@@ -20,6 +20,7 @@ namespace Garage.Presentation
             }
         }
 
+        // disable save button if name is empty
         private void txbx_name_Leave(object sender, EventArgs e)
         {
             if (txbx_name.Text.Trim() == "")
@@ -28,6 +29,7 @@ namespace Garage.Presentation
                 btn_saveDriver.Enabled = true;
         }
 
+        // save data button handler
         private void btn_saveDriver_Click(object sender, EventArgs e)
         {
             if (dal.AddEditDriver(txbx_name.Text.Trim(),

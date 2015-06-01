@@ -8,6 +8,7 @@ namespace Garage.Presentation
     {
         DAL dal = new DAL();
         bool addFlag = false;
+
         public NewEditVehicle(bool addFlag)
         {
             InitializeComponent();
@@ -19,6 +20,7 @@ namespace Garage.Presentation
             }
         }
 
+        // disable save button if brand, state number, vin code or mileage is empty
         private void txbx_Leave(object sender, EventArgs e)
         {
             if (txbx_brand.Text.Trim() == "" ||
@@ -30,6 +32,7 @@ namespace Garage.Presentation
                 btn_saveVehicle.Enabled = true;
         }
 
+        // save data button handler
         private void btn_saveVehicle_Click(object sender, EventArgs e)
         {
             if (dal.AddEditVehicle(txbx_brand.Text.Trim(),

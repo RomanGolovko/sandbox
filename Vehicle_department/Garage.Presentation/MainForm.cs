@@ -11,12 +11,13 @@ namespace Garage.Presentation
     public partial class MainForm : Form
     {
         GarageContext db;
-        DAL dal = new DAL();
+        DAL dal; 
         public MainForm()
         {
             InitializeComponent();
 
             db = new GarageContext();
+            dal = new DAL();
 
             db.Drivers.Load();
             dgv_drivers.DataSource = db.Drivers.Local.ToBindingList();
@@ -27,6 +28,7 @@ namespace Garage.Presentation
             Settings();
         }
 
+        // DataGrids display options
         void Settings()
         {
             try
@@ -55,11 +57,21 @@ namespace Garage.Presentation
             }
         }
 
+        // display rows number in DataGrids
+        private void dgv_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
+        {
+            object headValue = ((DataGridView)sender).Rows[e.RowIndex].HeaderCell.Value;
+            if (headValue == null || !headValue.Equals((e.RowIndex + 1).ToString()))
+                ((DataGridView)sender).Rows[e.RowIndex].HeaderCell.Value = (e.RowIndex + 1).ToString();
+        }
+
+        // main form load handler
         public void MainForm_Load(object sender, EventArgs e)
         {
             dal.Reminder();
         }
 
+        // drivers TextBoxes display options
         private void dgv_drivers_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             txbx_driverName.Text = dgv_drivers.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -69,6 +81,7 @@ namespace Garage.Presentation
             txbx_driverMedicine.Text = dgv_drivers.Rows[e.RowIndex].Cells[5].Value.ToString();
         }
 
+        // vehicles TextBoxes display options
         private void dgv_vehicle_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (db.Vehicles.Count() > 0)
@@ -93,6 +106,7 @@ namespace Garage.Presentation
             }
         }
 
+        // add driver button handler
         private void btn_addDriver_Click(object sender, EventArgs e)
         {
             NewEditDriver addDriver = new NewEditDriver(true);
@@ -104,6 +118,7 @@ namespace Garage.Presentation
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
+        // edit driver button handler
         private void btn_editDriver_Click(object sender, EventArgs e)
         {
             if (dgv_drivers.SelectedRows.Count > 0)
@@ -140,6 +155,7 @@ namespace Garage.Presentation
             }
         }
 
+        // delete driver button handler
         private void btn_deleteDriver_Click(object sender, EventArgs e)
         {
             if (dgv_drivers.SelectedRows.Count > 0)
@@ -160,6 +176,7 @@ namespace Garage.Presentation
             }
         }
 
+        // add vehicle button handler
         private void btn_addVehicle_Click(object sender, EventArgs e)
         {
             NewEditVehicle addVehicle = new NewEditVehicle(true);
@@ -178,6 +195,7 @@ namespace Garage.Presentation
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
+        // edit vehicle button handler
         private void btn_editVehicle_Click(object sender, EventArgs e)
         {
             if (dgv_vehicle.SelectedRows.Count > 0)
@@ -221,6 +239,7 @@ namespace Garage.Presentation
             }
         }
 
+        // delete vehicle button handler
         private void btn_delVehicle_Click(object sender, EventArgs e)
         {
             if (dgv_vehicle.SelectedRows.Count > 0)
@@ -241,6 +260,7 @@ namespace Garage.Presentation
             }
         }
 
+        // app quit confirmation
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (MessageBox.Show("Do You wont to quit?", "Vehicle Department",
@@ -248,13 +268,6 @@ namespace Garage.Presentation
                 e.Cancel = false;
             else
                 e.Cancel = true;
-        }
-
-        private void dgv_RowPrePaint(object sender, DataGridViewRowPrePaintEventArgs e)
-        {
-            object headValue = ((DataGridView)sender).Rows[e.RowIndex].HeaderCell.Value;
-            if (headValue == null || !headValue.Equals((e.RowIndex + 1).ToString()))
-                ((DataGridView)sender).Rows[e.RowIndex].HeaderCell.Value = (e.RowIndex + 1).ToString();
         }
     }
 }
