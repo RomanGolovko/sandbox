@@ -11,7 +11,7 @@ namespace Garage.Presentation
     public partial class MainForm : Form
     {
         GarageContext db;
-        DAL dal; 
+        DAL dal;
         public MainForm()
         {
             InitializeComponent();
@@ -268,6 +268,44 @@ namespace Garage.Presentation
                 e.Cancel = false;
             else
                 e.Cancel = true;
+        }
+
+        // drivers search button handler
+        private void btn_driverSearch_Click(object sender, EventArgs e)
+        {
+            string driverSearchedValue = txbx_driverSearch.Text.Trim();
+            var searchedRows = dal.DriversSearchedRows(driverSearchedValue);
+
+            if (searchedRows.Count() == 0)
+            {
+                MessageBox.Show("There is no records for this query", "Vehicle Department",
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            MessageBox.Show("There are " + searchedRows.Count() + " records", "Vehicle Department",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            dgv_drivers.DataSource = searchedRows;
+        }
+
+        // vehicles search button handler
+        private void btn_vehicleSearch_Click(object sender, EventArgs e)
+        {
+            string vehicleSearchedValue = txbx_vehicleSearch.Text.Trim();
+            var searchedRows = dal.VehiclesSearchedRows(vehicleSearchedValue);
+
+            if (searchedRows.Count() == 0)
+            {
+                MessageBox.Show("There is no records for this query", "Vehicle Department",
+                      MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            MessageBox.Show("There are " + searchedRows.Count() + " records", "Vehicle Department",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            dgv_vehicle.DataSource = searchedRows;
         }
     }
 }

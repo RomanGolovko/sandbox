@@ -71,6 +71,10 @@
             this.txbx_vehicleBrand = new System.Windows.Forms.TextBox();
             this.dgv_vehicle = new System.Windows.Forms.DataGridView();
             this.DriverId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txbx_vehicleSearch = new System.Windows.Forms.TextBox();
+            this.btn_vehicleSearch = new System.Windows.Forms.Button();
+            this.btn_driverSearch = new System.Windows.Forms.Button();
+            this.txbx_driverSearch = new System.Windows.Forms.TextBox();
             this.grpbx_garage.SuspendLayout();
             this.tbcntrl_garage.SuspendLayout();
             this.tbpg_garageDrivers.SuspendLayout();
@@ -101,6 +105,8 @@
             // 
             // tbpg_garageDrivers
             // 
+            this.tbpg_garageDrivers.Controls.Add(this.txbx_driverSearch);
+            this.tbpg_garageDrivers.Controls.Add(this.btn_driverSearch);
             this.tbpg_garageDrivers.Controls.Add(this.btn_deleteDriver);
             this.tbpg_garageDrivers.Controls.Add(this.btn_editDriver);
             this.tbpg_garageDrivers.Controls.Add(this.btn_addDriver);
@@ -125,7 +131,7 @@
             // 
             // btn_deleteDriver
             // 
-            this.btn_deleteDriver.Location = new System.Drawing.Point(420, 312);
+            this.btn_deleteDriver.Location = new System.Drawing.Point(421, 309);
             this.btn_deleteDriver.Name = "btn_deleteDriver";
             this.btn_deleteDriver.Size = new System.Drawing.Size(200, 23);
             this.btn_deleteDriver.TabIndex = 53;
@@ -135,7 +141,7 @@
             // 
             // btn_editDriver
             // 
-            this.btn_editDriver.Location = new System.Drawing.Point(212, 312);
+            this.btn_editDriver.Location = new System.Drawing.Point(213, 309);
             this.btn_editDriver.Name = "btn_editDriver";
             this.btn_editDriver.Size = new System.Drawing.Size(200, 23);
             this.btn_editDriver.TabIndex = 52;
@@ -145,7 +151,7 @@
             // 
             // btn_addDriver
             // 
-            this.btn_addDriver.Location = new System.Drawing.Point(6, 312);
+            this.btn_addDriver.Location = new System.Drawing.Point(7, 309);
             this.btn_addDriver.Name = "btn_addDriver";
             this.btn_addDriver.Size = new System.Drawing.Size(200, 23);
             this.btn_addDriver.TabIndex = 51;
@@ -156,7 +162,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(337, 119);
+            this.label5.Location = new System.Drawing.Point(338, 99);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 13);
             this.label5.TabIndex = 30;
@@ -164,7 +170,7 @@
             // 
             // txbx_driverCategory
             // 
-            this.txbx_driverCategory.Location = new System.Drawing.Point(434, 116);
+            this.txbx_driverCategory.Location = new System.Drawing.Point(435, 96);
             this.txbx_driverCategory.Name = "txbx_driverCategory";
             this.txbx_driverCategory.Size = new System.Drawing.Size(186, 20);
             this.txbx_driverCategory.TabIndex = 29;
@@ -172,7 +178,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(337, 171);
+            this.label4.Location = new System.Drawing.Point(338, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(152, 13);
             this.label4.TabIndex = 28;
@@ -181,7 +187,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(337, 93);
+            this.label3.Location = new System.Drawing.Point(338, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(65, 13);
             this.label3.TabIndex = 27;
@@ -190,7 +196,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(337, 145);
+            this.label2.Location = new System.Drawing.Point(338, 125);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 26;
@@ -199,7 +205,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(337, 71);
+            this.label1.Location = new System.Drawing.Point(338, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 25;
@@ -207,28 +213,28 @@
             // 
             // txbx_driverMedicine
             // 
-            this.txbx_driverMedicine.Location = new System.Drawing.Point(492, 168);
+            this.txbx_driverMedicine.Location = new System.Drawing.Point(493, 148);
             this.txbx_driverMedicine.Name = "txbx_driverMedicine";
             this.txbx_driverMedicine.Size = new System.Drawing.Size(128, 20);
             this.txbx_driverMedicine.TabIndex = 24;
             // 
             // txbx_driverPhoneNum
             // 
-            this.txbx_driverPhoneNum.Location = new System.Drawing.Point(434, 142);
+            this.txbx_driverPhoneNum.Location = new System.Drawing.Point(435, 122);
             this.txbx_driverPhoneNum.Name = "txbx_driverPhoneNum";
             this.txbx_driverPhoneNum.Size = new System.Drawing.Size(186, 20);
             this.txbx_driverPhoneNum.TabIndex = 23;
             // 
             // txbx_driverBirthDate
             // 
-            this.txbx_driverBirthDate.Location = new System.Drawing.Point(434, 90);
+            this.txbx_driverBirthDate.Location = new System.Drawing.Point(435, 70);
             this.txbx_driverBirthDate.Name = "txbx_driverBirthDate";
             this.txbx_driverBirthDate.Size = new System.Drawing.Size(186, 20);
             this.txbx_driverBirthDate.TabIndex = 22;
             // 
             // txbx_driverName
             // 
-            this.txbx_driverName.Location = new System.Drawing.Point(434, 64);
+            this.txbx_driverName.Location = new System.Drawing.Point(435, 44);
             this.txbx_driverName.Name = "txbx_driverName";
             this.txbx_driverName.Size = new System.Drawing.Size(186, 20);
             this.txbx_driverName.TabIndex = 21;
@@ -238,7 +244,7 @@
             this.dgv_drivers.AllowUserToAddRows = false;
             this.dgv_drivers.AllowUserToDeleteRows = false;
             this.dgv_drivers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_drivers.Location = new System.Drawing.Point(6, 64);
+            this.dgv_drivers.Location = new System.Drawing.Point(6, 44);
             this.dgv_drivers.Name = "dgv_drivers";
             this.dgv_drivers.ReadOnly = true;
             this.dgv_drivers.Size = new System.Drawing.Size(300, 225);
@@ -248,6 +254,8 @@
             // 
             // tbpg_garageVehicles
             // 
+            this.tbpg_garageVehicles.Controls.Add(this.btn_vehicleSearch);
+            this.tbpg_garageVehicles.Controls.Add(this.txbx_vehicleSearch);
             this.tbpg_garageVehicles.Controls.Add(this.label6);
             this.tbpg_garageVehicles.Controls.Add(this.txbx_vehicleDriveName);
             this.tbpg_garageVehicles.Controls.Add(this.txbx_vehicleInsurance);
@@ -495,6 +503,40 @@
             this.DriverId.ReadOnly = true;
             this.DriverId.Visible = false;
             // 
+            // txbx_vehicleSearch
+            // 
+            this.txbx_vehicleSearch.Location = new System.Drawing.Point(7, 18);
+            this.txbx_vehicleSearch.Name = "txbx_vehicleSearch";
+            this.txbx_vehicleSearch.Size = new System.Drawing.Size(406, 20);
+            this.txbx_vehicleSearch.TabIndex = 58;
+            // 
+            // btn_vehicleSearch
+            // 
+            this.btn_vehicleSearch.Location = new System.Drawing.Point(435, 18);
+            this.btn_vehicleSearch.Name = "btn_vehicleSearch";
+            this.btn_vehicleSearch.Size = new System.Drawing.Size(186, 20);
+            this.btn_vehicleSearch.TabIndex = 59;
+            this.btn_vehicleSearch.Text = "Search";
+            this.btn_vehicleSearch.UseVisualStyleBackColor = true;
+            this.btn_vehicleSearch.Click += new System.EventHandler(this.btn_vehicleSearch_Click);
+            // 
+            // btn_driverSearch
+            // 
+            this.btn_driverSearch.Location = new System.Drawing.Point(435, 18);
+            this.btn_driverSearch.Name = "btn_driverSearch";
+            this.btn_driverSearch.Size = new System.Drawing.Size(186, 20);
+            this.btn_driverSearch.TabIndex = 54;
+            this.btn_driverSearch.Text = "Search";
+            this.btn_driverSearch.UseVisualStyleBackColor = true;
+            this.btn_driverSearch.Click += new System.EventHandler(this.btn_driverSearch_Click);
+            // 
+            // txbx_driverSearch
+            // 
+            this.txbx_driverSearch.Location = new System.Drawing.Point(7, 18);
+            this.txbx_driverSearch.Name = "txbx_driverSearch";
+            this.txbx_driverSearch.Size = new System.Drawing.Size(406, 20);
+            this.txbx_driverSearch.TabIndex = 55;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -563,6 +605,10 @@
         private System.Windows.Forms.TextBox txbx_vehicleStateNum;
         private System.Windows.Forms.TextBox txbx_vehicleBrand;
         private System.Windows.Forms.DataGridView dgv_vehicle;
+        private System.Windows.Forms.TextBox txbx_driverSearch;
+        private System.Windows.Forms.Button btn_driverSearch;
+        private System.Windows.Forms.Button btn_vehicleSearch;
+        private System.Windows.Forms.TextBox txbx_vehicleSearch;
     }
 }
 
