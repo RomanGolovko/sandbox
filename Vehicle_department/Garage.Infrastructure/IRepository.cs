@@ -25,7 +25,13 @@ namespace Garage.Infrastructure
 
         // remind about technical service
         void Reminder();
-        // search driver
+
+
+        /// <summary>
+        /// Drivers search
+        /// </summary>
+        /// <returns>The searched rows.</returns>
+        /// <param name="searchedValue">Searched value.</param>
         List<Driver> DriversSearchedRows(string searchedValue);
         // search vehicle
         List<Vehicle> VehiclesSearchedRows(string searchedValue);
