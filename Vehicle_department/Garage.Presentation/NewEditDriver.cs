@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Windows.Forms;
 using Garage.Infrastructure;
+using Ninject;
 
 namespace Garage.Presentation
 {
     public partial class NewEditDriver : Form
     {
-        DAL dal = new DAL();
+        IRepository repository;
         bool addFlag = false;
 
         public NewEditDriver(bool addFlag)
         {
             InitializeComponent();
+
+            IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IRepository>().To<Repository>();
+            repository = ninjectKernel.Get<IRepository>();
 
             if (addFlag)
             {
@@ -32,7 +37,7 @@ namespace Garage.Presentation
         // save data button handler
         private void btn_saveDriver_Click(object sender, EventArgs e)
         {
-            if (dal.AddEditDriver(txbx_name.Text.Trim(),
+            if (repository.AddEditDriver(txbx_name.Text.Trim(),
                                   dtp_birthDate.Value,
                                   txbx_category.Text.Trim(),
                                   txbx_phoneNum.Text.Trim(),

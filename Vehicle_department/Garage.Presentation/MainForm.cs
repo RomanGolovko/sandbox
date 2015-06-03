@@ -1,29 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using System.Data.Entity;
+using Ninject;
 using Garage.Infrastructure;
-using Garage.Domain;
 
 namespace Garage.Presentation
 {
     public partial class MainForm : Form
     {
-        GarageContext db;
-        DAL dal;
+        IRepository repository;
         public MainForm()
         {
             InitializeComponent();
 
-            db = new GarageContext();
-            dal = new DAL();
+            IKernel ninjectKernel = new StandardKernel();
+            ninjectKernel.Bind<IRepository>().To<Repository>();
+            repository = ninjectKernel.Get<IRepository>();
 
-            db.Drivers.Load();
-            dgv_drivers.DataSource = db.Drivers.Local.ToBindingList();
+            repository.LoadDrivers();
+            dgv_drivers.DataSource = repository.BindDrivers();
 
-            db.Vehicles.Load();
-            dgv_vehicle.DataSource = db.Vehicles.Local.ToBindingList();
+            repository.LoadVehicles();
+            dgv_vehicle.DataSource = repository.BindVehicles();
 
             Settings();
         }
@@ -68,7 +66,7 @@ namespace Garage.Presentation
         // main form load handler
         public void MainForm_Load(object sender, EventArgs e)
         {
-            dal.Reminder();
+            repository.Reminder();
         }
 
         // drivers TextBoxes display options
@@ -84,7 +82,7 @@ namespace Garage.Presentation
         // vehicles TextBoxes display options
         private void dgv_vehicle_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if (db.Vehicles.Count() > 0)
+            if(repository.VehiclesList().Count() > 0)
             {
                 txbx_vehicleBrand.Text = dgv_vehicle.Rows[e.RowIndex].Cells[1].Value.ToString();
                 txbx_vehicleStateNum.Text = dgv_vehicle.Rows[e.RowIndex].Cells[2].Value.ToString();
@@ -101,7 +99,7 @@ namespace Garage.Presentation
                 if (converted == false)
                     return;
 
-                var driver = dal.CurrentDriver(id);
+                var driver = repository.GetDriver(id);
                 txbx_vehicleDriveName.Text = driver.Name;
             }
         }
@@ -130,7 +128,7 @@ namespace Garage.Presentation
                 if (converted == false)
                     return;
 
-                var currentDriver = dal.CurrentDriver(id);
+                var currentDriver = repository.GetDriver(id);
                 NewEditDriver editDriver = new NewEditDriver(false);
                 try
                 {
@@ -167,7 +165,7 @@ namespace Garage.Presentation
                 if (converted == false)
                     return;
 
-                if (dal.DelDriver(id))
+                if(repository.DelDriver(id))
                     MessageBox.Show("Driver was succecfuly deleted", "Vehicle Department",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
@@ -182,7 +180,7 @@ namespace Garage.Presentation
             NewEditVehicle addVehicle = new NewEditVehicle(true);
 
             // fill ComboBox
-            List<Driver> drivers = db.Drivers.ToList();
+            var drivers = repository.BindDrivers();
             addVehicle.cmbx_driver.DataSource = drivers;   // DataSource
             addVehicle.cmbx_driver.ValueMember = "Id";     // returned value
             addVehicle.cmbx_driver.DisplayMember = "Name"; // dispayed value
@@ -207,7 +205,7 @@ namespace Garage.Presentation
                 if (converted == false)
                     return;
 
-                var currentVehicle = dal.CurrentVehicle(id);
+                var currentVehicle = repository.GetVehicles(id);
                 NewEditVehicle editVehicle = new NewEditVehicle(false);
                 try
                 {
@@ -220,7 +218,7 @@ namespace Garage.Presentation
                     editVehicle.dtp_insurance.Value = currentVehicle.Insurance;
                     editVehicle.txbx_id.Text = currentVehicle.Id.ToString();
                     // fill ComboBox
-                    List<Driver> drivers = db.Drivers.ToList();
+                    var drivers = repository.BindDrivers();
                     editVehicle.cmbx_driver.DataSource = drivers;   // DataSource
                     editVehicle.cmbx_driver.ValueMember = "Id";     // returned value
                     editVehicle.cmbx_driver.DisplayMember = "Name"; // dispayed value
@@ -251,7 +249,7 @@ namespace Garage.Presentation
                 if (converted == false)
                     return;
 
-                if (dal.DelVehicle(id))
+                if (repository.DelVehicle(id))
                     MessageBox.Show("Vehicle was succecfuly deleted", "Vehicle Department",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
@@ -274,7 +272,7 @@ namespace Garage.Presentation
         private void btn_driverSearch_Click(object sender, EventArgs e)
         {
             string driverSearchedValue = txbx_driverSearch.Text.Trim();
-            var searchedRows = dal.DriversSearchedRows(driverSearchedValue);
+            var searchedRows = repository.DriversSearchedRows(driverSearchedValue);
 
             if (searchedRows.Count() == 0)
             {
@@ -293,7 +291,7 @@ namespace Garage.Presentation
         private void btn_vehicleSearch_Click(object sender, EventArgs e)
         {
             string vehicleSearchedValue = txbx_vehicleSearch.Text.Trim();
-            var searchedRows = dal.VehiclesSearchedRows(vehicleSearchedValue);
+            var searchedRows = repository.VehiclesSearchedRows(vehicleSearchedValue);
 
             if (searchedRows.Count() == 0)
             {
