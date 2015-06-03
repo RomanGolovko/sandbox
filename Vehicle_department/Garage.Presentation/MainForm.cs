@@ -13,8 +13,7 @@ namespace Garage.Presentation
         {
             InitializeComponent();
 
-            IKernel ninjectKernel = new StandardKernel();
-            ninjectKernel.Bind<IRepository>().To<Repository>();
+            IKernel ninjectKernel = new StandardKernel(new ConfigModule());
             repository = ninjectKernel.Get<IRepository>();
 
             repository.LoadDrivers();

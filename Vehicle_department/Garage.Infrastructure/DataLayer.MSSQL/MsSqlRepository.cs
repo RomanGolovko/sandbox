@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Garage.Infrastructure
 {
-    public class Repository : IDisposable, IRepository
+    public class MsSqlRepository : IDisposable, IRepository
     {
         private GarageContext db = new GarageContext();
 
@@ -32,13 +32,13 @@ namespace Garage.Infrastructure
         {
             return db.Vehicles.Find(id);
         }
-        // load drivers in DB
+        
+        // load drivers entity in DB
         public void LoadDrivers()
         {
             db.Drivers.Load();
-
         }
-        // load vehicles in DB
+        // load vehicles entity in DB
         public void LoadVehicles()
         {
             db.Vehicles.Load();
@@ -67,7 +67,7 @@ namespace Garage.Infrastructure
                 MessageBox.Show("Next Technical Service at the " + temp, "Vehicle Department",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-        // search drivers
+        // search driver
         public List<Driver> DriversSearchedRows(string searchedValue)
         {
             List<Driver> searchedRows = new List<Driver>();

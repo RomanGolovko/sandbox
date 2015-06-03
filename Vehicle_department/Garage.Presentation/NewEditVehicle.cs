@@ -15,7 +15,7 @@ namespace Garage.Presentation
             InitializeComponent();
 
             IKernel ninjectKernel = new StandardKernel();
-            ninjectKernel.Bind<IRepository>().To<Repository>();
+            ninjectKernel.Bind<IRepository>().To<MsSqlRepository>();
             repository = ninjectKernel.Get<IRepository>();
 
             if (addFlag)
