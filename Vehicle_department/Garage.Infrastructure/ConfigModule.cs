@@ -1,4 +1,7 @@
 ﻿using Ninject.Modules;
+using Garage.Infrastructure.DataLayer.MSSQL;
+using Garage.Infrastructure.DataLayer.LiteDB;
+
 
 namespace Garage.Infrastructure
 {
@@ -6,7 +9,8 @@ namespace Garage.Infrastructure
     {
         public override void Load()
         {
-            Bind<IRepository>().To<MsSqlRepository>();
+            //Bind<IRepository>().To<MsSqlRepository>();
+            Bind<IRepository>().To<LiteDbRepository>();
         }
     }
 }

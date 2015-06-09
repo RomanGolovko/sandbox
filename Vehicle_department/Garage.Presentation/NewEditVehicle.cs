@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
-using Garage.Infrastructure;
 using Ninject;
+using Garage.Infrastructure;
 
 namespace Garage.Presentation
 {
@@ -14,8 +14,7 @@ namespace Garage.Presentation
         {
             InitializeComponent();
 
-            IKernel ninjectKernel = new StandardKernel();
-            ninjectKernel.Bind<IRepository>().To<MsSqlRepository>();
+            IKernel ninjectKernel = new StandardKernel(new ConfigModule());
             repository = ninjectKernel.Get<IRepository>();
 
             if (addFlag)

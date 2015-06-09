@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.ComponentModel;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using System.Data.Entity;
 using Garage.Domain;
-using System.ComponentModel;
 
-namespace Garage.Infrastructure
+namespace Garage.Infrastructure.DataLayer.MSSQL
 {
-    public class MsSqlRepository : IDisposable, IRepository
+    public class MsSqlRepository : IRepository
     {
         private GarageContext db = new GarageContext();
 
@@ -22,12 +21,12 @@ namespace Garage.Infrastructure
         {
             return db.Vehicles;
         }
-        // current driver
+        // get current driver
         public Driver GetDriver(Guid id)
         {
             return db.Drivers.Find(id);
         }
-        // current vehicle
+        // get current vehicle
         public Vehicle GetVehicles(Guid id)
         {
             return db.Vehicles.Find(id);
@@ -43,31 +42,32 @@ namespace Garage.Infrastructure
         {
             db.Vehicles.Load();
         }
-        // binding DataGdid with drivers
-        public BindingList<Driver>BindDrivers()
+        // bind drivers entity with presentation 
+        public List<Driver> BindDrivers()
         {
-            return db.Drivers.Local.ToBindingList();
+            return db.Drivers.Local.ToBindingList().ToList<Driver>();
         }
-        // binding DataGdid with drivers
-        public BindingList<Vehicle> BindVehicles()
+        //bind vehicles entity with presentation
+        public List<Vehicle> BindVehicles()
         {
-            return db.Vehicles.Local.ToBindingList();
+            return db.Vehicles.Local.ToBindingList().ToList<Vehicle>();
         }
 
 
-        // remind about technical service
-        public void Reminder()
+        // technical service reminder
+        public string Reminder()
         {
             string temp = "";
             var techServ = db.Vehicles.Where(x => x.NextTechServ < 500);
             foreach (Vehicle serv in techServ)
                 temp += serv.Brand + " " + serv.StateNum + " ";
 
-            if (temp.Trim() != "")
-                MessageBox.Show("Next Technical Service at the " + temp, "Vehicle Department",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (temp.Trim() == "")
+                return null;
+
+            return temp;
         }
-        // search driver
+        // drivers search
         public List<Driver> DriversSearchedRows(string searchedValue)
         {
             List<Driver> searchedRows = new List<Driver>();
@@ -76,7 +76,7 @@ namespace Garage.Infrastructure
 
             return searchedRows;
         }
-        // search vehicles
+        // vehicles search
         public List<Vehicle> VehiclesSearchedRows(string searchedValue)
         {
             List<Vehicle> searchedRows = new List<Vehicle>();
@@ -113,10 +113,9 @@ namespace Garage.Infrastructure
 
                 flagResult = true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 flagResult = false;
-                MessageBox.Show(e.Message);
             }
 
             return flagResult;
@@ -134,10 +133,9 @@ namespace Garage.Infrastructure
                 db.SaveChanges();
                 flagResult = true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 flagResult = false;
-                MessageBox.Show(ex.Message);
             }
 
             return flagResult;
@@ -170,10 +168,9 @@ namespace Garage.Infrastructure
 
                 flagResult = true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 flagResult = false;
-                MessageBox.Show(e.Message);
             }
 
             return flagResult;
@@ -191,10 +188,9 @@ namespace Garage.Infrastructure
                 db.SaveChanges();
                 flagResult = true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 flagResult = false;
-                MessageBox.Show(e.Message);
             }
 
             return flagResult;

@@ -9,6 +9,7 @@ namespace Garage.Presentation
     public partial class MainForm : Form
     {
         IRepository repository;
+
         public MainForm()
         {
             InitializeComponent();
@@ -65,7 +66,9 @@ namespace Garage.Presentation
         // main form load handler
         public void MainForm_Load(object sender, EventArgs e)
         {
-            repository.Reminder();
+            if (repository.Reminder() != null)
+                MessageBox.Show("Next Technical Service at the " + repository.Reminder(), "Vehicle Department",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         // drivers TextBoxes display options
@@ -81,26 +84,23 @@ namespace Garage.Presentation
         // vehicles TextBoxes display options
         private void dgv_vehicle_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
-            if(repository.VehiclesList().Count() > 0)
-            {
-                txbx_vehicleBrand.Text = dgv_vehicle.Rows[e.RowIndex].Cells[1].Value.ToString();
-                txbx_vehicleStateNum.Text = dgv_vehicle.Rows[e.RowIndex].Cells[2].Value.ToString();
-                txbx_vehicleColor.Text = dgv_vehicle.Rows[e.RowIndex].Cells[3].Value.ToString();
-                txbx_vehicleReleaseDate.Text = dgv_vehicle.Rows[e.RowIndex].Cells[4].Value.ToString();
-                txbx_vehicleVinCode.Text = dgv_vehicle.Rows[e.RowIndex].Cells[5].Value.ToString();
-                txbx_vehicleMileage.Text = dgv_vehicle.Rows[e.RowIndex].Cells[6].Value.ToString();
-                txbx_vehicleInsurance.Text = dgv_vehicle.Rows[e.RowIndex].Cells[7].Value.ToString();
-                txbx_vehicleNextTechServ.Text = dgv_vehicle.Rows[e.RowIndex].Cells[8].Value.ToString();
+            txbx_vehicleBrand.Text = dgv_vehicle.Rows[e.RowIndex].Cells[1].Value.ToString();
+            txbx_vehicleStateNum.Text = dgv_vehicle.Rows[e.RowIndex].Cells[2].Value.ToString();
+            txbx_vehicleColor.Text = dgv_vehicle.Rows[e.RowIndex].Cells[3].Value.ToString();
+            txbx_vehicleReleaseDate.Text = dgv_vehicle.Rows[e.RowIndex].Cells[4].Value.ToString();
+            txbx_vehicleVinCode.Text = dgv_vehicle.Rows[e.RowIndex].Cells[5].Value.ToString();
+            txbx_vehicleMileage.Text = dgv_vehicle.Rows[e.RowIndex].Cells[6].Value.ToString();
+            txbx_vehicleInsurance.Text = dgv_vehicle.Rows[e.RowIndex].Cells[7].Value.ToString();
+            txbx_vehicleNextTechServ.Text = dgv_vehicle.Rows[e.RowIndex].Cells[8].Value.ToString();
 
-                // search current driver via Id
-                Guid id;
-                bool converted = Guid.TryParse(dgv_drivers[0, e.RowIndex].Value.ToString(), out id);
-                if (converted == false)
-                    return;
+            // search current driver via Id
+            Guid id;
+            bool converted = Guid.TryParse(dgv_drivers[0, e.RowIndex].Value.ToString(), out id);
+            if (converted == false)
+                return;
 
-                var driver = repository.GetDriver(id);
-                txbx_vehicleDriveName.Text = driver.Name;
-            }
+            var driver = repository.GetDriver(id);
+            txbx_vehicleDriveName.Text = driver.Name;
         }
 
         // add driver button handler
@@ -164,7 +164,7 @@ namespace Garage.Presentation
                 if (converted == false)
                     return;
 
-                if(repository.DelDriver(id))
+                if (repository.DelDriver(id))
                     MessageBox.Show("Driver was succecfuly deleted", "Vehicle Department",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
