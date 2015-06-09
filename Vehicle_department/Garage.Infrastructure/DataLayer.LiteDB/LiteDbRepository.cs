@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using LiteDB;
-//using System.Data.Entity;
 using Garage.Domain;
 
 namespace Garage.Infrastructure.DataLayer.LiteDB
@@ -13,7 +12,7 @@ namespace Garage.Infrastructure.DataLayer.LiteDB
 
         private LiteDatabase OpenConnecttion()
         {
-            db = new LiteDatabase(@"E:\Vehicle_department\Garage.Infrastructure\DataLayer.LiteDB\VehicleDepartmentDB.db");
+            db = new LiteDatabase("VehicleDepartmentDB.db");
             return db;
         }
         // drivers enumerator
@@ -136,6 +135,10 @@ namespace Garage.Infrastructure.DataLayer.LiteDB
         // vehicles search
         public List<Vehicle> VehiclesSearchedRows(string searchedValue)
         {
+            if (searchedValue.Trim() == "")
+            {
+
+            }
             using (db = OpenConnecttion())
             {
                 List<Vehicle> searchedRows = new List<Vehicle>();

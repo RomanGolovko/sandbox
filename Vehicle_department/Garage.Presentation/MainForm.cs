@@ -113,6 +113,8 @@ namespace Garage.Presentation
             else
                 MessageBox.Show("New driver was not added!", "Vehicle Department",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            dgv_drivers.DataSource = repository.BindDrivers();
         }
 
         // edit driver button handler
@@ -149,6 +151,8 @@ namespace Garage.Presentation
                 else
                     MessageBox.Show("Driver was not edited!", "Vehicle Department",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dgv_drivers.DataSource = repository.BindDrivers();
             }
         }
 
@@ -170,6 +174,8 @@ namespace Garage.Presentation
                 else
                     MessageBox.Show("Driver was not deleted!", "Vehicle Department",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dgv_drivers.DataSource = repository.BindDrivers();
             }
         }
 
@@ -190,6 +196,8 @@ namespace Garage.Presentation
             else
                 MessageBox.Show("New vehicle was not added", "Vehicle Department",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+            dgv_vehicle.DataSource = repository.BindVehicles();
         }
 
         // edit vehicle button handler
@@ -233,6 +241,8 @@ namespace Garage.Presentation
                 else
                     MessageBox.Show("Vehicle was not edited!", "Vehicle Department",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dgv_vehicle.DataSource = repository.BindVehicles();
             }
         }
 
@@ -254,6 +264,8 @@ namespace Garage.Presentation
                 else
                     MessageBox.Show("Vehicle was not deleted!", "Vehicle Department",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                dgv_vehicle.DataSource = repository.BindVehicles();
             }
         }
 
@@ -271,7 +283,7 @@ namespace Garage.Presentation
         private void btn_driverSearch_Click(object sender, EventArgs e)
         {
             string driverSearchedValue = txbx_driverSearch.Text.Trim();
-            var searchedRows = repository.DriversSearchedRows(driverSearchedValue);
+            var searchedRows = (driverSearchedValue.Trim() == "") ? repository.BindDrivers() : repository.DriversSearchedRows(driverSearchedValue);
 
             if (searchedRows.Count() == 0)
             {
@@ -290,7 +302,7 @@ namespace Garage.Presentation
         private void btn_vehicleSearch_Click(object sender, EventArgs e)
         {
             string vehicleSearchedValue = txbx_vehicleSearch.Text.Trim();
-            var searchedRows = repository.VehiclesSearchedRows(vehicleSearchedValue);
+            var searchedRows =(vehicleSearchedValue.Trim() == "")? repository.BindVehicles(): repository.VehiclesSearchedRows(vehicleSearchedValue);
 
             if (searchedRows.Count() == 0)
             {
