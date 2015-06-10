@@ -60,7 +60,7 @@
   <ItemGroup>
     <Compile Include="ConfigModule.cs" />
     <Compile Include="DataLayer.LiteDB\LiteDbRepository.cs" />
-    <Compile Include="GarageContext.cs" />
+    <Compile Include="DataLayer.MSSQL\MsSqlGarageContext.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataLayer.MSSQL\MsSqlRepository.cs" />

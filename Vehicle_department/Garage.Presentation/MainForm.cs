@@ -9,12 +9,17 @@ namespace Garage.Presentation
     public partial class MainForm : Form
     {
         IRepository repository;
+        bool LiteDb;
+        bool MsSql;
 
-        public MainForm()
+        public MainForm(bool LiteDb, bool MsSql)
         {
             InitializeComponent();
 
-            IKernel ninjectKernel = new StandardKernel(new ConfigModule());
+            this.LiteDb = LiteDb;
+            this.MsSql = MsSql;
+
+            IKernel ninjectKernel = new StandardKernel(new ConfigModule(LiteDb, MsSql));
             repository = ninjectKernel.Get<IRepository>();
 
             repository.LoadDrivers();
@@ -63,7 +68,7 @@ namespace Garage.Presentation
                 ((DataGridView)sender).Rows[e.RowIndex].HeaderCell.Value = (e.RowIndex + 1).ToString();
         }
 
-        // main form load handler
+        // DB choice
         public void MainForm_Load(object sender, EventArgs e)
         {
             if (repository.Reminder() != null)
@@ -106,7 +111,7 @@ namespace Garage.Presentation
         // add driver button handler
         private void btn_addDriver_Click(object sender, EventArgs e)
         {
-            NewEditDriver addDriver = new NewEditDriver(true);
+            NewEditDriver addDriver = new NewEditDriver(true, LiteDb, MsSql);
             if (addDriver.ShowDialog() == DialogResult.OK)
                 MessageBox.Show("New driver was succecfuly added", "Vehicle Department",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -130,7 +135,7 @@ namespace Garage.Presentation
                     return;
 
                 var currentDriver = repository.GetDriver(id);
-                NewEditDriver editDriver = new NewEditDriver(false);
+                NewEditDriver editDriver = new NewEditDriver(false, LiteDb, MsSql);
                 try
                 {
                     editDriver.txbx_name.Text = currentDriver.Name;
@@ -182,7 +187,7 @@ namespace Garage.Presentation
         // add vehicle button handler
         private void btn_addVehicle_Click(object sender, EventArgs e)
         {
-            NewEditVehicle addVehicle = new NewEditVehicle(true);
+            NewEditVehicle addVehicle = new NewEditVehicle(true, LiteDb, MsSql);
 
             // fill ComboBox
             var drivers = repository.BindDrivers();
@@ -213,7 +218,7 @@ namespace Garage.Presentation
                     return;
 
                 var currentVehicle = repository.GetVehicles(id);
-                NewEditVehicle editVehicle = new NewEditVehicle(false);
+                NewEditVehicle editVehicle = new NewEditVehicle(false, LiteDb, MsSql);
                 try
                 {
                     editVehicle.txbx_brand.Text = currentVehicle.Brand;
@@ -269,16 +274,6 @@ namespace Garage.Presentation
             }
         }
 
-        // app quit confirmation
-        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (MessageBox.Show("Do You wont to quit?", "Vehicle Department",
-                    MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                e.Cancel = false;
-            else
-                e.Cancel = true;
-        }
-
         // drivers search button handler
         private void btn_driverSearch_Click(object sender, EventArgs e)
         {
@@ -302,7 +297,7 @@ namespace Garage.Presentation
         private void btn_vehicleSearch_Click(object sender, EventArgs e)
         {
             string vehicleSearchedValue = txbx_vehicleSearch.Text.Trim();
-            var searchedRows =(vehicleSearchedValue.Trim() == "")? repository.BindVehicles(): repository.VehiclesSearchedRows(vehicleSearchedValue);
+            var searchedRows = (vehicleSearchedValue.Trim() == "") ? repository.BindVehicles() : repository.VehiclesSearchedRows(vehicleSearchedValue);
 
             if (searchedRows.Count() == 0)
             {
@@ -315,6 +310,12 @@ namespace Garage.Presentation
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             dgv_vehicle.DataSource = searchedRows;
+        }
+
+        // app quit
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

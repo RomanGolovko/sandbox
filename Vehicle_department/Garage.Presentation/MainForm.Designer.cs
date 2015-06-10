@@ -31,6 +31,8 @@
             this.grpbx_garage = new System.Windows.Forms.GroupBox();
             this.tbcntrl_garage = new System.Windows.Forms.TabControl();
             this.tbpg_garageDrivers = new System.Windows.Forms.TabPage();
+            this.txbx_driverSearch = new System.Windows.Forms.TextBox();
+            this.btn_driverSearch = new System.Windows.Forms.Button();
             this.btn_deleteDriver = new System.Windows.Forms.Button();
             this.btn_editDriver = new System.Windows.Forms.Button();
             this.btn_addDriver = new System.Windows.Forms.Button();
@@ -46,6 +48,8 @@
             this.txbx_driverName = new System.Windows.Forms.TextBox();
             this.dgv_drivers = new System.Windows.Forms.DataGridView();
             this.tbpg_garageVehicles = new System.Windows.Forms.TabPage();
+            this.btn_vehicleSearch = new System.Windows.Forms.Button();
+            this.txbx_vehicleSearch = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txbx_vehicleDriveName = new System.Windows.Forms.TextBox();
             this.txbx_vehicleInsurance = new System.Windows.Forms.TextBox();
@@ -71,10 +75,6 @@
             this.txbx_vehicleBrand = new System.Windows.Forms.TextBox();
             this.dgv_vehicle = new System.Windows.Forms.DataGridView();
             this.DriverId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txbx_vehicleSearch = new System.Windows.Forms.TextBox();
-            this.btn_vehicleSearch = new System.Windows.Forms.Button();
-            this.btn_driverSearch = new System.Windows.Forms.Button();
-            this.txbx_driverSearch = new System.Windows.Forms.TextBox();
             this.grpbx_garage.SuspendLayout();
             this.tbcntrl_garage.SuspendLayout();
             this.tbpg_garageDrivers.SuspendLayout();
@@ -86,7 +86,7 @@
             // grpbx_garage
             // 
             this.grpbx_garage.Controls.Add(this.tbcntrl_garage);
-            this.grpbx_garage.Location = new System.Drawing.Point(13, 13);
+            this.grpbx_garage.Location = new System.Drawing.Point(12, 12);
             this.grpbx_garage.Name = "grpbx_garage";
             this.grpbx_garage.Size = new System.Drawing.Size(654, 404);
             this.grpbx_garage.TabIndex = 0;
@@ -128,6 +128,23 @@
             this.tbpg_garageDrivers.TabIndex = 0;
             this.tbpg_garageDrivers.Text = "Drivers";
             this.tbpg_garageDrivers.UseVisualStyleBackColor = true;
+            // 
+            // txbx_driverSearch
+            // 
+            this.txbx_driverSearch.Location = new System.Drawing.Point(7, 18);
+            this.txbx_driverSearch.Name = "txbx_driverSearch";
+            this.txbx_driverSearch.Size = new System.Drawing.Size(406, 20);
+            this.txbx_driverSearch.TabIndex = 55;
+            // 
+            // btn_driverSearch
+            // 
+            this.btn_driverSearch.Location = new System.Drawing.Point(435, 18);
+            this.btn_driverSearch.Name = "btn_driverSearch";
+            this.btn_driverSearch.Size = new System.Drawing.Size(186, 20);
+            this.btn_driverSearch.TabIndex = 54;
+            this.btn_driverSearch.Text = "Search";
+            this.btn_driverSearch.UseVisualStyleBackColor = true;
+            this.btn_driverSearch.Click += new System.EventHandler(this.btn_driverSearch_Click);
             // 
             // btn_deleteDriver
             // 
@@ -287,6 +304,23 @@
             this.tbpg_garageVehicles.TabIndex = 1;
             this.tbpg_garageVehicles.Text = "Vehicles";
             this.tbpg_garageVehicles.UseVisualStyleBackColor = true;
+            // 
+            // btn_vehicleSearch
+            // 
+            this.btn_vehicleSearch.Location = new System.Drawing.Point(435, 18);
+            this.btn_vehicleSearch.Name = "btn_vehicleSearch";
+            this.btn_vehicleSearch.Size = new System.Drawing.Size(186, 20);
+            this.btn_vehicleSearch.TabIndex = 59;
+            this.btn_vehicleSearch.Text = "Search";
+            this.btn_vehicleSearch.UseVisualStyleBackColor = true;
+            this.btn_vehicleSearch.Click += new System.EventHandler(this.btn_vehicleSearch_Click);
+            // 
+            // txbx_vehicleSearch
+            // 
+            this.txbx_vehicleSearch.Location = new System.Drawing.Point(7, 18);
+            this.txbx_vehicleSearch.Name = "txbx_vehicleSearch";
+            this.txbx_vehicleSearch.Size = new System.Drawing.Size(406, 20);
+            this.txbx_vehicleSearch.TabIndex = 58;
             // 
             // label6
             // 
@@ -503,45 +537,11 @@
             this.DriverId.ReadOnly = true;
             this.DriverId.Visible = false;
             // 
-            // txbx_vehicleSearch
-            // 
-            this.txbx_vehicleSearch.Location = new System.Drawing.Point(7, 18);
-            this.txbx_vehicleSearch.Name = "txbx_vehicleSearch";
-            this.txbx_vehicleSearch.Size = new System.Drawing.Size(406, 20);
-            this.txbx_vehicleSearch.TabIndex = 58;
-            // 
-            // btn_vehicleSearch
-            // 
-            this.btn_vehicleSearch.Location = new System.Drawing.Point(435, 18);
-            this.btn_vehicleSearch.Name = "btn_vehicleSearch";
-            this.btn_vehicleSearch.Size = new System.Drawing.Size(186, 20);
-            this.btn_vehicleSearch.TabIndex = 59;
-            this.btn_vehicleSearch.Text = "Search";
-            this.btn_vehicleSearch.UseVisualStyleBackColor = true;
-            this.btn_vehicleSearch.Click += new System.EventHandler(this.btn_vehicleSearch_Click);
-            // 
-            // btn_driverSearch
-            // 
-            this.btn_driverSearch.Location = new System.Drawing.Point(435, 18);
-            this.btn_driverSearch.Name = "btn_driverSearch";
-            this.btn_driverSearch.Size = new System.Drawing.Size(186, 20);
-            this.btn_driverSearch.TabIndex = 54;
-            this.btn_driverSearch.Text = "Search";
-            this.btn_driverSearch.UseVisualStyleBackColor = true;
-            this.btn_driverSearch.Click += new System.EventHandler(this.btn_driverSearch_Click);
-            // 
-            // txbx_driverSearch
-            // 
-            this.txbx_driverSearch.Location = new System.Drawing.Point(7, 18);
-            this.txbx_driverSearch.Name = "txbx_driverSearch";
-            this.txbx_driverSearch.Size = new System.Drawing.Size(406, 20);
-            this.txbx_driverSearch.TabIndex = 55;
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(682, 431);
+            this.ClientSize = new System.Drawing.Size(679, 431);
             this.Controls.Add(this.grpbx_garage);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

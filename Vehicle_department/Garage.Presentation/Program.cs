@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Garage.Presentation
@@ -16,7 +13,10 @@ namespace Garage.Presentation
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            ChoosingDB dbChoice = new ChoosingDB();
+            bool LiteDB = dbChoice.rbtn_LiteDB.Checked;
+            bool MsSql = dbChoice.rbtn_mySQL.Checked; ;
+            Application.Run(dbChoice);
         }
     }
 }

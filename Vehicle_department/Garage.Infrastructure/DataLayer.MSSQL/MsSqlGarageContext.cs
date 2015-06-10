@@ -1,11 +1,11 @@
 ﻿using System.Data.Entity;
 using Garage.Domain;
 
-namespace Garage.Infrastructure
+namespace Garage.Infrastructure.DataLayer.MSSQL
 {
-    public class GarageContext : DbContext
+    public class MsSqlGarageContext : DbContext
     {
-        public GarageContext() : base("VehicleDepartmentDB")
+        public MsSqlGarageContext() : base("VehicleDepartmentDB")
         { }
 
         public DbSet<Driver> Drivers { get; set; }

@@ -8,13 +8,18 @@ namespace Garage.Presentation
     public partial class NewEditVehicle : Form
     {
         IRepository repository;
+        bool LiteDb;
+        bool MsSql;
         bool addFlag = false;
 
-        public NewEditVehicle(bool addFlag)
+        public NewEditVehicle(bool addFlag, bool LiteDb, bool MsSql)
         {
             InitializeComponent();
 
-            IKernel ninjectKernel = new StandardKernel(new ConfigModule());
+            this.LiteDb = LiteDb;
+            this.MsSql = MsSql;
+
+            IKernel ninjectKernel = new StandardKernel(new ConfigModule(LiteDb, MsSql));
             repository = ninjectKernel.Get<IRepository>();
 
             if (addFlag)

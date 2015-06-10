@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.ComponentModel;
 using System.Collections.Generic;
 using System.Data.Entity;
 using Garage.Domain;
@@ -9,7 +8,7 @@ namespace Garage.Infrastructure.DataLayer.MSSQL
 {
     public class MsSqlRepository : IRepository
     {
-        private GarageContext db = new GarageContext();
+        private MsSqlGarageContext db = new MsSqlGarageContext();
 
         // drivers enumerator
         public IEnumerable<Driver> DriversList()
