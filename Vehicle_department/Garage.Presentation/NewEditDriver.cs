@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
-using Ninject;
 using Garage.Infrastructure;
 
 namespace Garage.Presentation
 {
     public partial class NewEditDriver : Form
     {
-        IRepository repository;
+        GarageContoller repository;
         bool LiteDb;
         bool MsSql;
         bool addFlag = false;
@@ -19,8 +18,7 @@ namespace Garage.Presentation
             this.LiteDb = LiteDb;
             this.MsSql = MsSql;
 
-            IKernel ninjectKernel = new StandardKernel(new ConfigModule(this.LiteDb, MsSql));
-            repository = ninjectKernel.Get<IRepository>();
+            repository = new GarageContoller(LiteDb, MsSql);
 
             if (addFlag)
             {

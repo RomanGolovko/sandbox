@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Forms;
-using Ninject;
 using Garage.Infrastructure;
 
 namespace Garage.Presentation
 {
     public partial class MainForm : Form
     {
-        IRepository repository;
+        //IRepository repository;
+        GarageContoller repository; 
         bool LiteDb;
         bool MsSql;
 
@@ -19,8 +19,7 @@ namespace Garage.Presentation
             this.LiteDb = LiteDb;
             this.MsSql = MsSql;
 
-            IKernel ninjectKernel = new StandardKernel(new ConfigModule(LiteDb, MsSql));
-            repository = ninjectKernel.Get<IRepository>();
+            repository = new GarageContoller(LiteDb, MsSql);
 
             repository.LoadDrivers();
             dgv_drivers.DataSource = repository.BindDrivers();
@@ -68,7 +67,6 @@ namespace Garage.Presentation
                 ((DataGridView)sender).Rows[e.RowIndex].HeaderCell.Value = (e.RowIndex + 1).ToString();
         }
 
-        // DB choice
         public void MainForm_Load(object sender, EventArgs e)
         {
             if (repository.Reminder() != null)
@@ -99,13 +97,23 @@ namespace Garage.Presentation
             txbx_vehicleNextTechServ.Text = dgv_vehicle.Rows[e.RowIndex].Cells[8].Value.ToString();
 
             // search current driver via Id
-            Guid id;
-            bool converted = Guid.TryParse(dgv_drivers[0, e.RowIndex].Value.ToString(), out id);
-            if (converted == false)
-                return;
+            try
+            {
+                Guid id;
+                bool converted = Guid.TryParse(dgv_drivers[0, e.RowIndex].Value.ToString(), out id);
+                if (converted == false)
+                    return;
 
-            var driver = repository.GetDriver(id);
-            txbx_vehicleDriveName.Text = driver.Name;
+                var driver = repository.GetDriver(id);
+                txbx_vehicleDriveName.Text = driver.Name;
+            }
+            catch (Exception)
+            {
+                txbx_vehicleDriveName.Text = "Driver is not assigned";
+
+                MessageBox.Show("Assigned driver for this vehicle", "Vehicle Department",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         // add driver button handler
@@ -217,7 +225,7 @@ namespace Garage.Presentation
                 if (converted == false)
                     return;
 
-                var currentVehicle = repository.GetVehicles(id);
+                var currentVehicle = repository.GetVehicle(id);
                 NewEditVehicle editVehicle = new NewEditVehicle(false, LiteDb, MsSql);
                 try
                 {
