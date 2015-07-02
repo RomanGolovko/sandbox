@@ -71,6 +71,7 @@
             this.txbx_F.Size = new System.Drawing.Size(75, 20);
             this.txbx_F.TabIndex = 1;
             this.txbx_F.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
+            this.txbx_F.Leave += new System.EventHandler(this.txbx_Leave);
             // 
             // rbtn_лвж
             // 
@@ -83,6 +84,7 @@
             this.rbtn_лвж.TabStop = true;
             this.rbtn_лвж.Text = "Горение разлитых ЛВЖ, ГЖ или горение твердых горючих материалов";
             this.rbtn_лвж.UseVisualStyleBackColor = true;
+            this.rbtn_лвж.CheckedChanged += new System.EventHandler(this.rbtn_CheckedChanged);
             // 
             // rbtn_ош
             // 
@@ -93,6 +95,7 @@
             this.rbtn_ош.TabIndex = 3;
             this.rbtn_ош.Text = "\"Огненный шар\"";
             this.rbtn_ош.UseVisualStyleBackColor = true;
+            this.rbtn_ош.CheckedChanged += new System.EventHandler(this.rbtn_CheckedChanged);
             // 
             // grpbx_лвж
             // 
@@ -119,6 +122,7 @@
             this.txbx_EfЛвж.Size = new System.Drawing.Size(75, 20);
             this.txbx_EfЛвж.TabIndex = 9;
             this.txbx_EfЛвж.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
+            this.txbx_EfЛвж.Leave += new System.EventHandler(this.txbx_Leave);
             // 
             // label6
             // 
@@ -136,6 +140,7 @@
             this.txbx_rЛвж.Size = new System.Drawing.Size(75, 20);
             this.txbx_rЛвж.TabIndex = 7;
             this.txbx_rЛвж.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
+            this.txbx_rЛвж.Leave += new System.EventHandler(this.txbx_Leave);
             // 
             // label4
             // 
@@ -153,6 +158,7 @@
             this.txbx_Pв.Size = new System.Drawing.Size(75, 20);
             this.txbx_Pв.TabIndex = 5;
             this.txbx_Pв.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
+            this.txbx_Pв.Leave += new System.EventHandler(this.txbx_Leave);
             // 
             // label3
             // 
@@ -170,6 +176,7 @@
             this.txbx_Mv.Size = new System.Drawing.Size(75, 20);
             this.txbx_Mv.TabIndex = 3;
             this.txbx_Mv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
+            this.txbx_Mv.Leave += new System.EventHandler(this.txbx_Leave);
             // 
             // label2
             // 
@@ -201,6 +208,7 @@
             this.txbx_rОш.Size = new System.Drawing.Size(75, 20);
             this.txbx_rОш.TabIndex = 10;
             this.txbx_rОш.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
+            this.txbx_rОш.Leave += new System.EventHandler(this.txbx_Leave);
             // 
             // label8
             // 
@@ -219,6 +227,7 @@
             this.txbx_m.Size = new System.Drawing.Size(75, 20);
             this.txbx_m.TabIndex = 10;
             this.txbx_m.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
+            this.txbx_m.Leave += new System.EventHandler(this.txbx_Leave);
             // 
             // label7
             // 
@@ -247,6 +256,7 @@
             this.txbx_EfОш.TabIndex = 8;
             this.txbx_EfОш.Text = "450";
             this.txbx_EfОш.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
+            this.txbx_EfОш.Leave += new System.EventHandler(this.txbx_Leave);
             // 
             // lbl_warning
             // 
@@ -273,6 +283,7 @@
             this.btn_calculate.TabIndex = 105;
             this.btn_calculate.Text = "Расчитать избыточное давление взрыва ΔР для для горючей пыли\r\n";
             this.btn_calculate.UseVisualStyleBackColor = true;
+            this.btn_calculate.Click += new System.EventHandler(this.btn_calculate_Click);
             // 
             // q
             // 

@@ -42,7 +42,8 @@ namespace ExplosionDanger.WinForm
 
         private void btn_q_Click(object sender, EventArgs e)
         {
-
+            q q = new q();
+            q.ShowDialog();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace ExplosionDanger.BLL
     {
         double g = 9.81;                    // ускорение свободного падения, м * с^-2;
 
-        public bool ошFlag { get; set; }    // флаг расчета огненного шара;
+        public bool лвжFlag { get; set; }    // флаг расчета огненного шара;
         public double Ef { get; set; }      // среднеповерхностная плотность теплового потока излучения пламени, кВт * м^-2;
         public double F { get; set; }       // площадь разлива, м^2;
         public double Mv { get; set; }      // удельная массовая скорость выгорания топлива, кг * м^-2 * с^-1;
@@ -19,14 +19,14 @@ namespace ExplosionDanger.BLL
             return Ef * Fq() * ψ();
         }
 
-        public double d()
+        double d()
         {
             return Math.Sqrt((4 * F) / Math.PI);
         }
 
-        public double H()
+        double H()
         {
-            if (!ошFlag)
+            if (лвжFlag)
                 return 42 * d() * Math.Pow(Mv / (Pв * Math.Sqrt(g * d())), 0.61);
             else
                 return Ds() / 2;
@@ -34,7 +34,7 @@ namespace ExplosionDanger.BLL
 
         double Fq()
         {
-            if (!ошFlag)
+            if (лвжFlag)
                 return Math.Sqrt(Math.Pow(Fв(), 2) + Math.Pow(Fг(), 2));
             else
                 return (H() / Ds() + 0.5) / (4 * Math.Pow((Math.Pow((H() / Ds() + 0.5), 2) + Math.Pow((r / Ds()), 2)), 1.5));
@@ -74,7 +74,7 @@ namespace ExplosionDanger.BLL
 
         double ψ()
         {
-            if (!ошFlag)
+            if (лвжFlag)
                 return Math.Exp(-7.0 * Math.Pow(10, -4) * (r - (0.5 * d())));
             else
                 return Math.Exp(-7.0 * Math.Pow(10, -4) * (Math.Sqrt(Math.Pow(r, 2) + Math.Pow(H(), 2)) - (Ds() / 2)));

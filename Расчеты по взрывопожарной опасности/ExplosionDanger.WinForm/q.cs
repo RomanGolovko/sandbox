@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ExplosionDanger.BLL;
 
@@ -19,6 +13,7 @@ namespace ExplosionDanger.WinForm
             InitializeComponent();
 
             grpbx_ош.Enabled = false;
+            btn_calculate.Enabled = false;
         }
 
         // фильтр ввода данных
@@ -40,38 +35,78 @@ namespace ExplosionDanger.WinForm
         }
 
         // деактивирует кнопку если поля не заполнены
-        //private void txbx_Leave(object sender, EventArgs e)
-        //{
-        //    if (rbtn_лвж.Checked)
-        //        if (txbx_Hт.Text.Trim() == "" ||
-        //            txbx_Vсвоб.Text.Trim() == "" ||
-        //            txbx_F.Text.Trim() == "" ||
-        //            txbx_Pв.Text.Trim() == "" ||
-        //            txbx_T0.Text.Trim() == "" ||
-        //            txbx_Kвз.Text.Trim() == "" ||
-        //            txbx_τ.Text.Trim() == "" ||
-        //            txbx_q.Text.Trim() == "" ||
-        //            txbx_mап.Text.Trim() == "" ||
-        //            txbx_Kп.Text.Trim() == "" ||
-        //            txbx_Kубор.Text.Trim() == "" ||
-        //            txbx_Kг.Text.Trim() == "" ||
-        //            txbx_n.Text.Trim() == "" ||
-        //            txbx_β1.Text.Trim() == "" ||
-        //            txbx_β2.Text.Trim() == "" ||
-        //            txbx_M1j.Text.Trim() == "" ||
-        //            txbx_M2j.Text.Trim() == "" ||
-        //            txbx_α.Text.Trim() == "")
-        //        {
-        //            btn_calculate.Enabled = false;
-        //            lbl_warning.ForeColor = Color.Red;
-        //            lbl_warning.Text = "Не все данные\n заполнены!!!";
-        //        }
-        //        else
-        //        {
-        //            btn_calculate.Enabled = true;
-        //            lbl_warning.Text = "";
-        //        }
-        //}
+        private void txbx_Leave(object sender, EventArgs e)
+        {
+            if (rbtn_лвж.Checked)
+            {
+                if (txbx_EfЛвж.Text.Trim() == "" ||
+                      txbx_F.Text.Trim() == "" ||
+                      txbx_Mv.Text.Trim() == "" ||
+                      txbx_Pв.Text.Trim() == "" ||
+                      txbx_rЛвж.Text.Trim() == "")
+                {
+                    btn_calculate.Enabled = false;
+                    lbl_warning.ForeColor = Color.Red;
+                    lbl_warning.Text = "Не все данные\n заполнены!!!";
+                }
+                else
+                {
+                    btn_calculate.Enabled = true;
+                    lbl_warning.Text = "";
+                }
+            }
+            else
+            {
+                if (txbx_EfОш.Text.Trim() == "" ||
+                      txbx_m.Text.Trim() == "" ||
+                      txbx_rОш.Text.Trim() == "")
+                {
+                    btn_calculate.Enabled = false;
+                    lbl_warning.ForeColor = Color.Red;
+                    lbl_warning.Text = "Не все данные\n заполнены!!!";
+                }
+                else
+                {
+                    btn_calculate.Enabled = true;
+                    lbl_warning.Text = "";
+                }
+            }
+        }
 
+        private void rbtn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtn_лвж.Checked)
+            {
+                grpbx_лвж.Enabled = true;
+                grpbx_ош.Enabled = false;
+                txbx_EfОш.Text = "";
+                txbx_m.Text = "";
+                txbx_rОш.Text = "";
+            }
+            else
+            {
+                grpbx_лвж.Enabled = false;
+                grpbx_ош.Enabled = true;
+                txbx_EfЛвж.Text = "";
+                txbx_F.Text = "";
+                txbx_Mv.Text = "";
+                txbx_Pв.Text = "";
+                txbx_rЛвж.Text = "";
+                txbx_EfОш.Text = "450";
+            }
+        }
+
+        private void btn_calculate_Click(object sender, EventArgs e)
+        {
+            calculation.лвжFlag = rbtn_лвж.Checked;
+            calculation.Ef = (rbtn_лвж.Checked) ? double.Parse(txbx_EfЛвж.Text.Trim()) : double.Parse(txbx_EfОш.Text.Trim());
+            calculation.F = (txbx_F.Text.Trim() != "") ? double.Parse(txbx_F.Text.Trim()) : 0;
+            calculation.Mv = (txbx_Mv.Text.Trim() != "") ? double.Parse(txbx_Mv.Text.Trim()) : 0;
+            calculation.Pв = (txbx_Pв.Text.Trim() != "") ? double.Parse(txbx_Pв.Text.Trim()) : 0;
+            calculation.r = (rbtn_лвж.Checked) ? double.Parse(txbx_rЛвж.Text.Trim()) : double.Parse(txbx_rОш.Text.Trim());
+            calculation.m = (txbx_m.Text.Trim() != "") ? double.Parse(txbx_m.Text.Trim()) : 0;
+
+            txbx_result.Text = calculation.q().ToString();
+        }
     }
 }
