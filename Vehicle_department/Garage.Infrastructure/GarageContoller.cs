@@ -119,7 +119,7 @@ namespace Garage.Infrastructure
         }
 
         /// <summary>
-        /// Add/edit driver
+        /// Upsert driver
         /// </summary>
         /// <param name="name">Driver name</param>
         /// <param name="birthDate">Driver date of birth</param>
@@ -129,7 +129,7 @@ namespace Garage.Infrastructure
         /// <param name="id"> Drivers id</param>
         /// <param name="addFlag">Add flag</param>
         /// <returns>Operation state</returns>
-        public bool AddEditDriver(string name, DateTime birthDate, string category,
+        public bool UpsertDriver(string name, DateTime birthDate, string category,
             string phoneNum, DateTime medicalCertificate, string id, bool addFlag)
         {
             bool flagResult = false;
@@ -159,7 +159,7 @@ namespace Garage.Infrastructure
             return flagResult;
         }
         /// <summary>
-        /// Add/edit vehicle
+        /// Upsert vehicle
         /// </summary>
         /// <param name="brand">Vehicle brand</param>
         /// <param name="stateNum">Vehicle state number</param>
@@ -172,7 +172,7 @@ namespace Garage.Infrastructure
         /// <param name="id">Vehicle id</param>
         /// <param name="addFlag">Add flag</param>
         /// <returns>Operation state</returns>
-        public bool AddEditVehicle(string brand, string stateNum, string color, DateTime releaseDate,
+        public bool UpsertVehicle(string brand, string stateNum, string color, DateTime releaseDate,
             string vinCode, string mileage, DateTime insurance, string driverId, string id, bool addFlag)
         {
             bool flagResult = false;
@@ -206,11 +206,11 @@ namespace Garage.Infrastructure
         }
 
         /// <summary>
-        /// Delete current driver
+        /// Remove current driver
         /// </summary>
         /// <param name="id">Driver id</param>
         /// <returns>Operation state</returns>
-        public bool DelDriver(Guid id)
+        public bool RemoveDriver(Guid id)
         {
             bool flagResult = false;
 
@@ -234,7 +234,7 @@ namespace Garage.Infrastructure
         /// </summary>
         /// <param name="id">Vehicle id</param>
         /// <returns>Operation state</returns>
-        public bool DelVehicle(Guid id)
+        public bool RemoveVehicle(Guid id)
         {
             bool flagResult = false;
 

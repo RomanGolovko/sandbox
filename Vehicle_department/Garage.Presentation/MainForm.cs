@@ -181,7 +181,7 @@ namespace Garage.Presentation
                 if (converted == false)
                     return;
 
-                if (repository.DelDriver(id))
+                if (repository.RemoveDriver(id))
                     MessageBox.Show("Driver was succecfuly deleted", "Vehicle Department",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
@@ -271,7 +271,7 @@ namespace Garage.Presentation
                 if (converted == false)
                     return;
 
-                if (repository.DelVehicle(id))
+                if (repository.RemoveVehicle(id))
                     MessageBox.Show("Vehicle was succecfuly deleted", "Vehicle Department",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
                 else
@@ -286,7 +286,7 @@ namespace Garage.Presentation
         private void btn_driverSearch_Click(object sender, EventArgs e)
         {
             string driverSearchedValue = txbx_driverSearch.Text.Trim();
-            var searchedRows = (driverSearchedValue.Trim() == "") ? repository.BindDrivers() : repository.DriversSearchedRows(driverSearchedValue);
+            var searchedRows = (string.IsNullOrEmpty(driverSearchedValue.Trim())) ? repository.BindDrivers() : repository.DriversSearchedRows(driverSearchedValue);
 
             if (searchedRows.Count() == 0)
             {
@@ -305,7 +305,7 @@ namespace Garage.Presentation
         private void btn_vehicleSearch_Click(object sender, EventArgs e)
         {
             string vehicleSearchedValue = txbx_vehicleSearch.Text.Trim();
-            var searchedRows = (vehicleSearchedValue.Trim() == "") ? repository.BindVehicles() : repository.VehiclesSearchedRows(vehicleSearchedValue);
+            var searchedRows = (string.IsNullOrEmpty(vehicleSearchedValue.Trim())) ? repository.BindVehicles() : repository.VehiclesSearchedRows(vehicleSearchedValue);
 
             if (searchedRows.Count() == 0)
             {

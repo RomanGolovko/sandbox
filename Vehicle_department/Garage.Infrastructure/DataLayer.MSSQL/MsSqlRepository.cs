@@ -59,6 +59,5 @@ namespace Garage.Infrastructure.DataLayer.MSSQL
             db.Vehicles.Remove(vehicle);
             db.SaveChanges();
         }
-
     }
 }

@@ -20,7 +20,7 @@ namespace Vehicle_department.Test
             var repository = new GarageContoller(mock.Object);
 
             // Act
-            var result = repository.AddEditDriver("Ivanov Ivan", DateTime.Parse("3.6.1969"),
+            var result = repository.UpsertDriver("Ivanov Ivan", DateTime.Parse("3.6.1969"),
                 "B", "(067) 569-32-23", DateTime.Parse("1.12.2015"), id.ToString(), true);
 
             // Assert
@@ -37,7 +37,7 @@ namespace Vehicle_department.Test
             var repository = new GarageContoller(mock.Object);
 
             // Act
-            var result = repository.AddEditVehicle("BMW 525i", "255-98AA", "Black",
+            var result = repository.UpsertVehicle("BMW 525i", "255-98AA", "Black",
                 DateTime.Parse("15.12.2010"), "123456789", "99587", DateTime.Parse("1.12.2015"),
                 driverId.ToString(), id.ToString(), true);
 
@@ -120,7 +120,7 @@ namespace Vehicle_department.Test
             var repository = new GarageContoller(mock.Object);
 
             // Act
-            var result = repository.AddEditDriver("Ivanov Stepan", DateTime.Parse("3.6.1969"), 
+            var result = repository.UpsertDriver("Ivanov Stepan", DateTime.Parse("3.6.1969"), 
                 "B", "(067) 569-32-23", DateTime.Parse("1.12.2015"), id.ToString(), false);
 
             // Assert
@@ -137,7 +137,7 @@ namespace Vehicle_department.Test
             var repository = new GarageContoller(mock.Object);
 
             // Act
-            var result = repository.AddEditVehicle("BMW 525i", "255-98AA", "Black",
+            var result = repository.UpsertVehicle("BMW 525i", "255-98AA", "Black",
                 DateTime.Parse("15.12.2010"), "123456789", "99587", DateTime.Parse("1.12.2015"), 
                 driverId.ToString(), id.ToString(), false);
 
@@ -155,7 +155,7 @@ namespace Vehicle_department.Test
             var repository = new GarageContoller(mock.Object);
 
             // Act
-            var result = repository.DelDriver(id);
+            var result = repository.RemoveDriver(id);
 
             // Assert
             Assert.IsTrue(result);
@@ -170,7 +170,7 @@ namespace Vehicle_department.Test
             var repository = new GarageContoller(mock.Object);
 
             // Act
-            var result = repository.DelVehicle(id);
+            var result = repository.RemoveVehicle(id);
 
             // Assert
             Assert.IsTrue(result);

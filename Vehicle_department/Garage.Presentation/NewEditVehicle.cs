@@ -42,7 +42,7 @@ namespace Garage.Presentation
         // save data button handler
         private void btn_saveVehicle_Click(object sender, EventArgs e)
         {
-            if (repository.AddEditVehicle(txbx_brand.Text.Trim(),
+            if (repository.UpsertVehicle(txbx_brand.Text.Trim(),
                                           txbx_stateNum.Text.Trim(),
                                           txbx_color.Text.Trim(),
                                           dtp_releaseDate.Value,

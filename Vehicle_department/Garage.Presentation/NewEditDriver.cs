@@ -39,7 +39,7 @@ namespace Garage.Presentation
         // save data button handler
         private void btn_saveDriver_Click(object sender, EventArgs e)
         {
-            if (repository.AddEditDriver(txbx_name.Text.Trim(),
+            if (repository.UpsertDriver(txbx_name.Text.Trim(),
                                   dtp_birthDate.Value,
                                   txbx_category.Text.Trim(),
                                   txbx_phoneNum.Text.Trim(),
