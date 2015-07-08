@@ -8,12 +8,14 @@ namespace ExplosionDanger.WinForm
     public partial class q : Form
     {
         ThermalRadiationIntensity calculation = new ThermalRadiationIntensity();
+
         public q()
         {
             InitializeComponent();
 
             grpbx_ош.Enabled = false;
             btn_calculate.Enabled = false;
+            lbl_warning.Text = "Не все данные\n заполнены!!!";
         }
 
         // фильтр ввода данных
@@ -34,8 +36,8 @@ namespace ExplosionDanger.WinForm
                 e.KeyChar = ',';
         }
 
-        // деактивирует кнопку если поля не заполнены
-        private void txbx_Leave(object sender, EventArgs e)
+        // деактивирует кнопку если требуемые поля не заполнены
+        private void txbx_KeyUp(object sender, KeyEventArgs e)
         {
             if (rbtn_лвж.Checked)
             {
@@ -101,10 +103,10 @@ namespace ExplosionDanger.WinForm
             calculation.лвжFlag = rbtn_лвж.Checked;
             calculation.Ef = (rbtn_лвж.Checked) ? double.Parse(txbx_EfЛвж.Text.Trim()) : double.Parse(txbx_EfОш.Text.Trim());
             calculation.F = (txbx_F.Text.Trim() != "") ? double.Parse(txbx_F.Text.Trim()) : 0;
-            calculation.Mv = (txbx_Mv.Text.Trim() != "") ? double.Parse(txbx_Mv.Text.Trim()) : 0;
-            calculation.Pв = (txbx_Pв.Text.Trim() != "") ? double.Parse(txbx_Pв.Text.Trim()) : 0;
+            calculation.Mv = (!string.IsNullOrEmpty(txbx_Mv.Text.Trim())) ? double.Parse(txbx_Mv.Text.Trim()) : 0;
+            calculation.Pв = (!string.IsNullOrEmpty(txbx_Pв.Text.Trim())) ? double.Parse(txbx_Pв.Text.Trim()) : 0;
             calculation.r = (rbtn_лвж.Checked) ? double.Parse(txbx_rЛвж.Text.Trim()) : double.Parse(txbx_rОш.Text.Trim());
-            calculation.m = (txbx_m.Text.Trim() != "") ? double.Parse(txbx_m.Text.Trim()) : 0;
+            calculation.m = (!string.IsNullOrEmpty(txbx_m.Text.Trim())) ? double.Parse(txbx_m.Text.Trim()) : 0;
 
             txbx_result.Text = calculation.q().ToString();
         }

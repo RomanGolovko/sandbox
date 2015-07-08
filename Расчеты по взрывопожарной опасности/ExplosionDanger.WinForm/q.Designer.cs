@@ -71,7 +71,7 @@
             this.txbx_F.Size = new System.Drawing.Size(75, 20);
             this.txbx_F.TabIndex = 1;
             this.txbx_F.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
-            this.txbx_F.Leave += new System.EventHandler(this.txbx_Leave);
+            this.txbx_F.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txbx_KeyUp);
             // 
             // rbtn_лвж
             // 
@@ -122,7 +122,7 @@
             this.txbx_EfЛвж.Size = new System.Drawing.Size(75, 20);
             this.txbx_EfЛвж.TabIndex = 9;
             this.txbx_EfЛвж.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
-            this.txbx_EfЛвж.Leave += new System.EventHandler(this.txbx_Leave);
+            this.txbx_EfЛвж.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txbx_KeyUp);
             // 
             // label6
             // 
@@ -140,7 +140,7 @@
             this.txbx_rЛвж.Size = new System.Drawing.Size(75, 20);
             this.txbx_rЛвж.TabIndex = 7;
             this.txbx_rЛвж.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
-            this.txbx_rЛвж.Leave += new System.EventHandler(this.txbx_Leave);
+            this.txbx_rЛвж.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txbx_KeyUp);
             // 
             // label4
             // 
@@ -158,7 +158,7 @@
             this.txbx_Pв.Size = new System.Drawing.Size(75, 20);
             this.txbx_Pв.TabIndex = 5;
             this.txbx_Pв.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
-            this.txbx_Pв.Leave += new System.EventHandler(this.txbx_Leave);
+            this.txbx_Pв.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txbx_KeyUp);
             // 
             // label3
             // 
@@ -176,7 +176,7 @@
             this.txbx_Mv.Size = new System.Drawing.Size(75, 20);
             this.txbx_Mv.TabIndex = 3;
             this.txbx_Mv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
-            this.txbx_Mv.Leave += new System.EventHandler(this.txbx_Leave);
+            this.txbx_Mv.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txbx_KeyUp);
             // 
             // label2
             // 
@@ -208,7 +208,7 @@
             this.txbx_rОш.Size = new System.Drawing.Size(75, 20);
             this.txbx_rОш.TabIndex = 10;
             this.txbx_rОш.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
-            this.txbx_rОш.Leave += new System.EventHandler(this.txbx_Leave);
+            this.txbx_rОш.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txbx_KeyUp);
             // 
             // label8
             // 
@@ -227,7 +227,7 @@
             this.txbx_m.Size = new System.Drawing.Size(75, 20);
             this.txbx_m.TabIndex = 10;
             this.txbx_m.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
-            this.txbx_m.Leave += new System.EventHandler(this.txbx_Leave);
+            this.txbx_m.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txbx_KeyUp);
             // 
             // label7
             // 
@@ -256,7 +256,7 @@
             this.txbx_EfОш.TabIndex = 8;
             this.txbx_EfОш.Text = "450";
             this.txbx_EfОш.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbx_KeyPress);
-            this.txbx_EfОш.Leave += new System.EventHandler(this.txbx_Leave);
+            this.txbx_EfОш.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txbx_KeyUp);
             // 
             // lbl_warning
             // 

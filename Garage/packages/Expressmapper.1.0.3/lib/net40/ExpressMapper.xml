@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ExpressMapper</name>
+    </assembly>
+    <members>
+        <member name="T:ExpressMapper.CollectionTypes">
+            <summary>
+            Enumeration for determining collection type
+            </summary>
+        </member>
+        <member name="T:ExpressMapper.ICustomTypeMapper`2">
+            <summary>
+            Interface to implement custom mapperd
+            </summary>
+        </member>
+        <member name="T:ExpressMapper.MapNotImplementedException">
+            <summary>
+            Mapping not implemented exception
+            </summary>
+        </member>
+        <member name="T:ExpressMapper.ITypeMapper`2">
+            <summary>
+            Interface that implements internals of mapping
+            </summary>
+            <typeparam name="T">source</typeparam>
+            <typeparam name="TN">destination</typeparam>
+        </member>
+        <member name="T:ExpressMapper.IMemberConfiguration`2">
+            <summary>
+            Interface to extend the mapping
+            </summary>
+            <typeparam name="T">source</typeparam>
+            <typeparam name="TN">destination</typeparam>
+        </member>
+    </members>
+</doc>

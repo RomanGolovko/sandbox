@@ -28,7 +28,7 @@ namespace ExplosionDanger.WinForm
                 grpbx_ЛВЖ.Enabled = true;
             }
         }
-        private void txbx_w_Leave(object sender, EventArgs e)
+        private void txbx_W_KeyUp(object sender, KeyEventArgs e)
         {
             if (txbx_W.Text.Trim() != "")
             {
@@ -51,7 +51,7 @@ namespace ExplosionDanger.WinForm
             }
 
         }
-        private void txbx_Pн_Leave(object sender, EventArgs e)
+        private void txbx_Pн_KeyUp(object sender, KeyEventArgs e)
         {
             if (txbx_Pн.Text.Trim() != "")
             {
@@ -83,21 +83,19 @@ namespace ExplosionDanger.WinForm
             if (e.KeyChar == '.')
                 e.KeyChar = ',';
         }
+
         // деактивирует кнопку если поля не заполнены
-        private void txbx_Leave(object sender, EventArgs e)
+        private void txbx_KeyUp(object sender, KeyEventArgs e)
         {
-            if (txbx_Hт.Text.Trim() == "" ||
-                txbx_Aв.Text.Trim() == "" ||
-                txbx_τ.Text.Trim() == "" ||
-                txbx_Z.Text.Trim() == "" ||
-                txbx_Pв.Text.Trim() == "" ||
-                txbx_T0.Text.Trim() == "" ||
-                txbx_Vсвоб.Text.Trim() == "" ||
-                txbx_tp.Text.Trim() == "" ||
-                txbx_Nc.Text.Trim() == "" ||
-                txbx_No.Text.Trim() == "" ||
-                txbx_Nh.Text.Trim() == "" ||
-                txbx_Nx.Text.Trim() == "")
+            if (string.IsNullOrEmpty(txbx_Hт.Text.Trim()) ||
+                string.IsNullOrEmpty(txbx_M.Text.Trim()) ||
+                string.IsNullOrEmpty(txbx_Aв.Text.Trim()) ||
+                string.IsNullOrEmpty(txbx_τ.Text.Trim()) ||
+                string.IsNullOrEmpty(txbx_Z.Text.Trim()) ||
+                string.IsNullOrEmpty(txbx_Pв.Text.Trim()) ||
+                string.IsNullOrEmpty(txbx_T0.Text.Trim()) ||
+                string.IsNullOrEmpty(txbx_Vсвоб.Text.Trim()) ||
+                string.IsNullOrEmpty(txbx_tp.Text.Trim()))
             {
                 btn_calculate.Enabled = false;
                 lbl_warning.ForeColor = Color.Red;
@@ -108,8 +106,8 @@ namespace ExplosionDanger.WinForm
                 btn_calculate.Enabled = true;
                 lbl_warning.Text = "";
             }
-
         }
+
         private void btn_calculate_Click(object sender, EventArgs e)
         {
             calculation.ГГflag = rbtn_ГГ.Checked;
@@ -118,30 +116,29 @@ namespace ExplosionDanger.WinForm
             calculation.τ = double.Parse(txbx_τ.Text.Trim());
             calculation.Pв = double.Parse(txbx_Pв.Text.Trim());
             calculation.M = double.Parse(txbx_M.Text.Trim());
-            calculation.P1 = (txbx_P1.Text.Trim() != "") ? double.Parse(txbx_P1.Text.Trim()) : 0;
-            calculation.V = (txbx_V.Text.Trim() != "") ? double.Parse(txbx_V.Text.Trim()) : 0;
-            calculation.q = (txbx_q.Text.Trim() != "") ? double.Parse(txbx_q.Text.Trim()) : 0;
+            calculation.P1 = (!string.IsNullOrEmpty(txbx_P1.Text.Trim())) ? double.Parse(txbx_P1.Text.Trim()) : 0;
+            calculation.V = (!string.IsNullOrEmpty(txbx_V.Text.Trim())) ? double.Parse(txbx_V.Text.Trim()) : 0;
+            calculation.q = (!string.IsNullOrEmpty(txbx_q.Text.Trim())) ? double.Parse(txbx_q.Text.Trim()) : 0;
             calculation.τ712 = (txbx_τ712.Text.Trim() != "") ? double.Parse(txbx_τ712.Text.Trim()) : 0;
             calculation.P2 = (txbx_P2.Text.Trim() != "") ? double.Parse(txbx_P2.Text.Trim()) : 0;
-            calculation.r = (txbx_r.Text.Trim() != "") ? double.Parse(txbx_r.Text.Trim()) : 0;
-            calculation.L = (txbx_L.Text.Trim() != "") ? double.Parse(txbx_L.Text.Trim()) : 0;
-            calculation.W = (txbx_W.Text.Trim() != "") ? double.Parse(txbx_W.Text.Trim()) : 0;
-            calculation.Fи = (txbx_Fu.Text.Trim() != "") ? double.Parse(txbx_Fu.Text.Trim()) : 0;
-            calculation.τисп = (txbx_τисп.Text.Trim() != "") ? double.Parse(txbx_τисп.Text.Trim()) : 0;
-            calculation.η = (txbx_η.Text.Trim() != "") ? double.Parse(txbx_η.Text.Trim()) : 0;
-            calculation.Pн = (txbx_Pн.Text.Trim() != "") ? double.Parse(txbx_Pн.Text.Trim()) : 0;
-            calculation.A = (txbx_A.Text.Trim() != "") ? double.Parse(txbx_A.Text.Trim()) : 0;
-            calculation.B = (txbx_B.Text.Trim() != "") ? double.Parse(txbx_B.Text.Trim()) : 0;
-            calculation.C = (txbx_C.Text.Trim() != "") ? double.Parse(txbx_C.Text.Trim()) : 0;
+            calculation.r = (!string.IsNullOrEmpty(txbx_r.Text.Trim())) ? double.Parse(txbx_r.Text.Trim()) : 0;
+            calculation.L = (!string.IsNullOrEmpty(txbx_L.Text.Trim())) ? double.Parse(txbx_L.Text.Trim()) : 0;
+            calculation.W = (!string.IsNullOrEmpty(txbx_W.Text.Trim())) ? double.Parse(txbx_W.Text.Trim()) : 0;
+            calculation.Fи = (!string.IsNullOrEmpty(txbx_Fu.Text.Trim())) ? double.Parse(txbx_Fu.Text.Trim()) : 0;
+            calculation.τисп = (!string.IsNullOrEmpty(txbx_τисп.Text.Trim())) ? double.Parse(txbx_τисп.Text.Trim()) : 0;
+            calculation.η = (!string.IsNullOrEmpty(txbx_η.Text.Trim())) ? double.Parse(txbx_η.Text.Trim()) : 0;
+            calculation.Pн = (!string.IsNullOrEmpty(txbx_Pн.Text.Trim())) ? double.Parse(txbx_Pн.Text.Trim()) : 0;
+            calculation.A = (!string.IsNullOrEmpty(txbx_A.Text.Trim())) ? double.Parse(txbx_A.Text.Trim()) : 0;
+            calculation.B = (!string.IsNullOrEmpty(txbx_B.Text.Trim())) ? double.Parse(txbx_B.Text.Trim()) : 0;
+            calculation.C = (!string.IsNullOrEmpty(txbx_C.Text.Trim())) ? double.Parse(txbx_C.Text.Trim()) : 0;
             calculation.Z = double.Parse(txbx_Z.Text.Trim());
             calculation.T0 = double.Parse(txbx_T0.Text.Trim());
             calculation.Vсвоб = double.Parse(txbx_Vсвоб.Text.Trim());
             calculation.tp = double.Parse(txbx_tp.Text.Trim());
-            calculation.Nc = double.Parse(txbx_Nc.Text.Trim());
-            calculation.Nh = double.Parse(txbx_Nh.Text.Trim());
-            calculation.No = double.Parse(txbx_No.Text.Trim());
-            calculation.Nx = double.Parse(txbx_Nx.Text.Trim());
-
+            calculation.Nc = (!string.IsNullOrEmpty(txbx_Nc.Text.Trim())) ? double.Parse(txbx_Nc.Text.Trim()) : 0;
+            calculation.Nh = (!string.IsNullOrEmpty(txbx_Nh.Text.Trim())) ? double.Parse(txbx_Nh.Text.Trim()) : 0;
+            calculation.No = (!string.IsNullOrEmpty(txbx_No.Text.Trim())) ? double.Parse(txbx_No.Text.Trim()) : 0;
+            calculation.Nx = (!string.IsNullOrEmpty(txbx_Nx.Text.Trim())) ? double.Parse(txbx_Nx.Text.Trim()) : 0;
 
             txbx_result.Text = calculation.ΔP().ToString();
         }

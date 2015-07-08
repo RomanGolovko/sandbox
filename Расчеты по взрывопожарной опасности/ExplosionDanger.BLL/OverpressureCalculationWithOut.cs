@@ -51,6 +51,11 @@ namespace ExplosionDanger.BLL
         public double B { get; set; }       // константа Антуана
         public double C { get; set; }       // константа Антуана
 
+
+        /// <summary>
+        /// Избыточное давления взрыва
+        /// </summary>
+        /// <returns>Избыточное давления взрыва</returns>
         public double ΔP()
         {
             return ((m() * Hт * P0 * Z) / (Vсвоб * Pв * Cр * T0)) * (1 / Kн);
@@ -61,51 +66,101 @@ namespace ExplosionDanger.BLL
             return Aв * τ + 1;
         }
 
+        /// <summary>
+        /// Масса газа
+        /// </summary>
+        /// <returns>Массу газа</returns>
         double m()
         {
             return (ГГflag) ? (Vа() + Vт()) * Pгп() : mж() + mемк() + mсв();
         }
+
+        /// <summary>
+        /// Плотность газа
+        /// </summary>
+        /// <returns>Плотность газа</returns>
         double Pгп()
         {
             return M / (Vo * (1 + 0.00367 * tp));
         }
 
+        /// <summary>
+        /// Объем газа, который вышел из аппарата
+        /// </summary>
+        /// <returns>Объем газа</returns>
         double Vа()
         {
             return (P1 / P0) * V;
         }
+
+        /// <summary>
+        /// Объем газа, который вышел из трубопроводов
+        /// </summary>
+        /// <returns>Объем газа</returns>
         double Vт()
         {
             return V1т() + V2т();
         }
+
+        /// <summary>
+        /// Объем газа, который вышел из трубопровода до перекрытия
+        /// </summary>
+        /// <returns>Объем газа</returns>
         double V1т()
         {
             return q * τ712;
         }
+
+        /// <summary>
+        /// Объем газа, который вышел из трубопровода после перекрытия
+        /// </summary>
+        /// <returns>Объем газа</returns>
         double V2т()
         {
             return Math.PI * (P2 / P0) * V * (Math.Pow(r, 2) * L);
         }
 
+        /// <summary>
+        /// Масса жидкости, которая испарилась с поверхностей, на которые был нанесен свежий состав
+        /// </summary>
+        /// <returns>Массу жидкости</returns>
         double mсв()
         {
             return (W == 0) ? SetW() * Fи * τисп : W * Fи * τисп;
         }
+
+        /// <summary>
+        /// Масса жидкости, которая испарилась с поверхности открытых емкостей
+        /// </summary>
+        /// <returns>Массу жидкости</returns>
         double mемк()
         {
             return (W == 0) ? SetW() * Fи * τисп : W * Fи * τисп;
         }
+
+        /// <summary>
+        /// Масса жидкости, которая испарилась с поверхности разлива
+        /// </summary>
+        /// <returns>Массу жидкости</returns>
         double mж()
         {
             return (W == 0) ? SetW() * Fи * τисп : W * Fи * τисп;
         }
 
+        /// <summary>
+        /// Интенсивность испарения
+        /// </summary>
+        /// <returns>Интенсивность испарения</returns>
         double SetW()
         {
             return (Pн == 0) ? Math.Pow(10, -6) * η * Math.Pow(M / 1000, (1.0 / 2.0)) * SetPн()
                              : Math.Pow(10, -6) * η * Math.Pow(M / 1000, (1.0 / 2.0)) * Pн;
         }
 
+        /// <summary>
+        /// Давление насыщенного пара
+        /// </summary>
+        /// <returns>Давление насыщенного пара</returns>
         double SetPн()
         {
             return 0.133 * Math.Pow(10, (A - (B / (C + tp))));

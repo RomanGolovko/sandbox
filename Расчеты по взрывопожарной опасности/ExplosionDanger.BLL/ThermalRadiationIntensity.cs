@@ -14,16 +14,38 @@ namespace ExplosionDanger.BLL
         public double r { get; set; }       // расстояние от геометрического центра пролива до облучаемого объекта, м;
         public double m { get; set; }       // масса горючего вещества, кг;
 
+
+        /// <summary>
+        /// Время существования "огненного шара"
+        /// </summary>
+        /// <returns>Время существования "огненного шара"</returns>
+        public double ts()
+        {
+            return 0.92 * Math.Pow(m, 0.303);
+        }
+
+        /// <summary>
+        /// Интенсивность теплового излучения
+        /// </summary>
+        /// <returns>Интенсивность теплового излучения</returns>
         public double q()
         {
             return Ef * Fq() * ψ();
         }
 
+        /// <summary>
+        ///  Эффективный диаметр разлива
+        /// </summary>
+        /// <returns>Эффективный диаметр разлива</returns>
         double d()
         {
             return Math.Sqrt((4 * F) / Math.PI);
         }
 
+        /// <summary>
+        /// Высота пламени
+        /// </summary>
+        /// <returns>Высоту пламени</returns>
         double H()
         {
             if (лвжFlag)
@@ -32,6 +54,10 @@ namespace ExplosionDanger.BLL
                 return Ds() / 2;
         }
 
+        /// <summary>
+        /// Угловой коэффициент излучения
+        /// </summary>
+        /// <returns>Угловой коэффициент излучения</returns>
         double Fq()
         {
             if (лвжFlag)
@@ -40,11 +66,19 @@ namespace ExplosionDanger.BLL
                 return (H() / Ds() + 0.5) / (4 * Math.Pow((Math.Pow((H() / Ds() + 0.5), 2) + Math.Pow((r / Ds()), 2)), 1.5));
         }
 
+        /// <summary>
+        /// Фактор облученности для вертикальной площадки
+        /// </summary>
+        /// <returns>Фактор облученности для вертикальной площадки</returns>
         double Fв()
         {
             return (1 / Math.PI) * ((1 / S()) * Math.Atan(h() / Math.Sqrt(Math.Pow(S(), 2) - 1)) - (h() / S()) * (Math.Atan(Math.Sqrt((S() - 1) / (S() + 1)) - (A() / Math.Sqrt(Math.Pow(A(), 2) - 1)) * Math.Atan(Math.Sqrt(((A() + 1) * (S() - 1)) / ((A() - 1) * (S() + 1)))))));
         }
 
+        /// <summary>
+        /// Фактор облученности для горизонтальной площадки
+        /// </summary>
+        /// <returns>Фактор облученности для горизонтальной площадки</returns>
         double Fг()
         {
             return (1 / Math.PI) * (((B() - (1 / S())) / Math.Sqrt(Math.Pow(B(), 2) - 1)) * Math.Atan(Math.Sqrt(((B() + 1) * (S() - 1)) / ((B() - 1) * (S() + 1)))) - ((A() - 1 / S()) / Math.Sqrt(Math.Pow(A(), 2) - 1)) * Math.Atan(Math.Sqrt(((A() + 1) * (S() - 1)) / ((A() - 1) * (S() + 1)))));
@@ -67,11 +101,19 @@ namespace ExplosionDanger.BLL
             return (2 * H()) / d();
         }
 
+        /// <summary>
+        /// Эффективный диаметр "огненного шара"
+        /// </summary>
+        /// <returns>Эффективный диаметр "огненного шара"</returns>
         double Ds()
         {
             return 5.33 * Math.Pow(m, 0.327);
         }
 
+        /// <summary>
+        /// Коэффициент пропускания теплового излучения сквозь атмосферу
+        /// </summary>
+        /// <returns>Коэффициент пропускания теплового излучения сквозь атмосферу</returns>
         double ψ()
         {
             if (лвжFlag)

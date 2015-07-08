@@ -105,6 +105,10 @@ namespace ExplosionDanger.BLL
             return (W == 0) ? SetW() * Fиж * τиспж : W * Fиж * τиспж;
         }
 
+        /// <summary>
+        /// Интенсивность испарения
+        /// </summary>
+        /// <returns>Интенсивность испарения</returns>
         double SetW()
         {
             return (Pн == 0) ? Math.Pow(10, -6) * η * Math.Pow(147.3, (1.0 / 2.0)) * SetPн()
