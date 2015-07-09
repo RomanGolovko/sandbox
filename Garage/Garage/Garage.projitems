@@ -3,7 +3,7 @@
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>1ef42229-f681-4216-97f7-8abebc841123</SharedGUID>
+    <SharedGUID>3f363768-5e81-45d2-a75a-2678e4b3dad1</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Garage</Import_RootNamespace>
