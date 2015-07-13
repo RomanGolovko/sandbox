@@ -1,15 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
+using Ninject;
 using T9_Spelling.BLL;
 
 namespace T9
 {
     public partial class MainForm : Form
     {
-        Replace replace = new Replace();
+        IReplace replace;
         public MainForm()
         {
             InitializeComponent();
+
+            IKernel ninjectKernel = new StandardKernel(new ConfigModule());
+            replace = ninjectKernel.Get<IReplace>();
         }
 
         private void txbx_result_KeyPress(object sender, KeyPressEventArgs e)

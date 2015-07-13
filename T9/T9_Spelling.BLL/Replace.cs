@@ -1,12 +1,8 @@
 ﻿namespace T9_Spelling.BLL
 {
-    public class Replace
+    public class Replace : IReplace
     {
-        /// <summary>
-        /// Replace entered numbers on letters
-        /// </summary>
-        /// <param name="number">Number symbol</param>
-        /// <returns>Letter symbol</returns>
+        // replace entered numbers on letters
         public char ReplaceNumbers(char number)
         {
             if (number == '2')
@@ -31,11 +27,7 @@
             return number;
         }
 
-        /// <summary>
-        /// Replace a group of characters on the right one
-        /// </summary>
-        /// <param name="text">Typed text from TextBox</param>
-        /// <returns>Сorrect text</returns>
+        // replace a group of characters on the right one
         public string ReplaceLetters(string text)
         {
             if (text.Contains("AAA"))

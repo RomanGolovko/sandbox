@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Ninject;
 using T9_Spelling.BLL;
 
 namespace T9_Spelling.Test
@@ -10,7 +11,9 @@ namespace T9_Spelling.Test
         public void Can_replace_numbers()
         {
             // Arrange
-            Replace replace = new Replace();
+            IKernel ninjectKernel = new StandardKernel(new ConfigModule());
+            IReplace replace = ninjectKernel.Get<IReplace>();
+
             char test2 = '2';
             char test3 = '3';
             char test4 = '4';
@@ -48,7 +51,8 @@ namespace T9_Spelling.Test
         public void Can_replace_letters()
         {
             // Arrange
-            Replace replace = new Replace();
+            IKernel ninjectKernel = new StandardKernel(new ConfigModule());
+            IReplace replace = ninjectKernel.Get<IReplace>();
             string text = "A AA AAA D DD DDD G GG GGG J JJ JJJ M MM MMM P PP PPP PPPP T TT TTT W WW WWW WWWW";
 
             // Act
