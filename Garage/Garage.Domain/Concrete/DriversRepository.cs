@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 
 using Garage.Domain.Abstract;
 using Garage.Domain.Entities;
@@ -9,15 +10,17 @@ namespace Garage.Domain.Concrete
     {
         private EFDbContext db = new EFDbContext();
 
-        public IQueryable<Driver> GetAll
+        public IEnumerable<Driver> GetAll
         {
-            get{ return db.Drivers; }
+            get { return db.Drivers; }
         }
 
         public void Save(Driver driver)
         {
             if (driver.Id == 0)
+            {
                 db.Drivers.Add(driver);
+            }
             else
             {
                 Driver dbEntry = db.Drivers.Find(driver.Id);
@@ -36,11 +39,16 @@ namespace Garage.Domain.Concrete
         public Driver Delete(int id)
         {
             Driver dbEntry = db.Drivers.Find(id);
-            if(dbEntry != null)
+            if (dbEntry != null)
             {
                 db.Drivers.Remove(dbEntry);
                 db.SaveChanges();
             }
+            else
+            {
+                throw new ApplicationException("Can't delete driver with id:" + id);
+            }
+
             return dbEntry;
         }
     }

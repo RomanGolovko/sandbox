@@ -8,6 +8,7 @@ namespace Garage.Domain.Entities
 {
     public class Driver
     {
+        [Key]
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 

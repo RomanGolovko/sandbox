@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
 
 using Garage.Domain.Abstract;
 using Garage.Domain.Entities;
@@ -9,9 +10,9 @@ namespace Garage.Domain.Concrete
     {
         private EFDbContext db = new EFDbContext();
 
-        public IQueryable<Vehicle> GetAll
+        public IEnumerable<Vehicle> GetAll
         {
-            get{ return db.Vehicles; }
+            get { return db.Vehicles; }
         }
 
         public void Save(Vehicle vehicle)
@@ -44,6 +45,11 @@ namespace Garage.Domain.Concrete
                 db.Vehicles.Remove(dbEntry);
                 db.SaveChanges();
             }
+            else
+            {
+                throw new ApplicationException("Can't delete vehicle with id: " + id);
+            }
+
             return dbEntry;
         }
     }

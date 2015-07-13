@@ -29,6 +29,7 @@ namespace Garage.WebUI.Infrastructure
         private void AddBindings()
         {
             ninjectKernel.Bind<IRepository<Driver>>().To<DriversRepository>();
+            ninjectKernel.Bind<IRepository<Vehicle>>().To<VehiclesRepository>();
         }
     }
 }

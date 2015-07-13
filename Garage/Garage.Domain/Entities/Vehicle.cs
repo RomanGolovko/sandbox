@@ -7,6 +7,7 @@ namespace Garage.Domain.Entities
 {
     public class Vehicle
     {
+        [Key]
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
