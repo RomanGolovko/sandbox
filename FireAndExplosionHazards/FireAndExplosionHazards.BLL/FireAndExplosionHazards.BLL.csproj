@@ -69,9 +69,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IOverpressCalcWith.cs" />
+    <Compile Include="Abstract\FireLoad\IFireLoad.cs" />
     <Compile Include="Abstract\OverpressCalcWith\IOverpressureCalculationWith_FG.cs" />
     <Compile Include="Abstract\OverpressCalcWith\IOverpressureCalculationWith_FL.cs" />
+    <Compile Include="Concrete\FireLoad\FireLoad.cs" />
     <Compile Include="Concrete\OverpressCalcWith\OverpressCalcWith_FG.cs" />
     <Compile Include="Concrete\OverpressCalcWith\OverpressCalcWith_FL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,6 +80,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

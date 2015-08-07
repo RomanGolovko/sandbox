@@ -91,7 +91,7 @@ namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
 
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
-        [Display(Name = "r - Внутренний радиус трубопроводов, м")]
+        [Display(Name = "r - внутренний радиус трубопроводов, м")]
         public double r { get; set; }
 
         [Required(ErrorMessage = "Поле должно быть установлено")]

@@ -63,11 +63,11 @@ namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
         public double Nx { get; set; }
 
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
-        [Display(Name = "Fиж - площадь испарения поверхности  с поверхности разлива, м^2")]
+        [Display(Name = "Fи - площадь испарения, м^2")]
         public double Fи { get; set; } = 0;
 
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
-        [Display(Name = "τиспж - продолжительность испарения поверхности  с поверхности разлива, с")]
+        [Display(Name = "τисп - продолжительность испарения, с")]
         public double τисп { get; set; } = 0;
 
 

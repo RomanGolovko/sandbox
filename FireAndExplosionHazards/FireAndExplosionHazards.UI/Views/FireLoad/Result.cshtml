@@ -1,0 +1,20 @@
+﻿@model FireAndExplosionHazards.BLL.Concrete.FireLoad.FireLoad
+
+<h2>Результаты:</h2>
+
+
+<div class=" form-horizontal">
+        <div class="form-group">
+            @Html.Label("Величина пожарной нагрузки", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                Q = @Html.Label(@Model.Q().ToString())
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Удельная пожарная нагрузка составляет", htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                g = @Html.Label(@Model.g().ToString())
+            </div>
+        </div>
+    </div>
