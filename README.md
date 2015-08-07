@@ -1,8 +1,9 @@
 # sandbox
 1. Vehicle_department project is an exhibition project, portfolio (if you like this word).
-2. Garage is the web implementation jf the Vehicle_department
 
-3. Расчеты взрывопожарной безопасности the project is made under the Ukrainian state standards calculation of fire safety
+2. Garage is the web implementation of the Vehicle_department
+
+3. FireAndExplosionHazards the project is made under Ukrainian state standards calculation of fire safety
 
 4. T9 is the test task on junior C# developer by the condition:
 
