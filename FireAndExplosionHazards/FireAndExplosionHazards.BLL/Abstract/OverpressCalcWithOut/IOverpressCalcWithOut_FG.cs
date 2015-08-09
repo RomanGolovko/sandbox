@@ -1,6 +1,6 @@
-﻿namespace FireAndExplosionHazards.BLL.Abstract.OverpressCalcWith
+﻿namespace FireAndExplosionHazards.BLL.Abstract.OverpressCalcWithOut
 {
-    interface IOverpressureCalculationWith_FG
+    interface IOverpressCalcWithOut_FG
     {
         /// <summary>
         /// Начальное давление
@@ -10,12 +10,17 @@
         /// <summary>
         /// Мольный объем
         /// </summary>
-        double Vo { get ; }
+        double Vo { get; }
 
         /// <summary>
         /// Коэффициент негерметичности помещения и неадиабатичность процесса горения
         /// </summary>
-        double Kн { get ; }
+        double Kн { get; }
+
+        /// <summary>
+        /// Теплоемкость воздуха
+        /// </summary>
+        double Cр { get; }
 
         /// <summary>
         /// Температура вспышки
@@ -23,9 +28,9 @@
         double Tв { get; set; }
 
         /// <summary>
-        /// Максимальное давление взрыва
+        /// Теплота сгорания
         /// </summary>
-        double Pmax { get; set; } 
+        double Hт { get; set; }
 
         /// <summary>
         /// Коэффициент участия ГГ во взрыве
@@ -38,6 +43,26 @@
         double Vсвоб { get; set; }
 
         /// <summary>
+        /// Плотность воздуха до взрыва
+        /// </summary>
+        double Pв { get; set; }
+
+        /// <summary>
+        /// Начальная температура воздуха
+        /// </summary>
+        double T0 { get; set; }
+
+        /// <summary>
+        /// Кратность воздухообмена, которую создает аварийная вентиляция
+        /// </summary>
+        double Aв { get; set; }
+
+        /// <summary>
+        /// Продолжительность поступления паров ЛВЖ и ГЖ в объем помещения
+        /// </summary>
+        double τ { get; set; }
+
+        /// <summary>
         /// Молярная масса
         /// </summary>
         double M { get; set; }
@@ -46,26 +71,6 @@
         /// Расчетная температура
         /// </summary>
         double tp { get; set; }
-
-        /// <summary>
-        /// Число атомов углерода в молекуле ГГ
-        /// </summary>
-        double Nc { get; set; }
-
-        /// <summary>
-        /// Число атомов водорода в молекуле ГГ
-        /// </summary>
-        double Nh { get; set; }
-
-        /// <summary>
-        /// Число атомов кислорода в молекуле ГГ
-        /// </summary>
-        double No { get; set; }
-
-        /// <summary>
-        /// Число атомов галогенов в молекуле ГГ
-        /// </summary>
-        double Nx { get; set; }
 
         /// <summary>
         /// Давление в аппарате
@@ -109,27 +114,21 @@
         double ΔР();
 
         /// <summary>
-        /// Плотность газа или пара при расчетной температуре
+        /// Коэффициент
         /// </summary>
-        /// <returns>Плотность газа или пара при расчетной температуре</returns>
+        /// <returns>Коэффициент</returns>
+        double K();
+
+        /// <summary>
+        /// Плотность пара при расчетной температуре
+        /// </summary>
+        /// <returns>Плотность пара при расчетной температуре</returns>
         double Pгп();
 
         /// <summary>
-        ///  Стехиометрическая концентрация ГГ
+        /// Масса паров ЛВЖ и ГЖ, которые попали в результате расчетной аварии в помещение
         /// </summary>
-        /// <returns>Стехиометрическая концентрация ГГ</returns>
-        double Cct();
-
-        /// <summary>
-        /// Стехиометрический коэффициент кислорода в реакции горения
-        /// </summary>
-        /// <returns>Стехиометрический коэффициент кислорода в реакции горения</returns>
-        double β();
-
-        /// <summary>
-        /// Масса газа, который поступил в помещение во время расчетной аварии
-        /// </summary>
-        /// <returns>Масса газа</returns>
+        /// <returns>Масса паров ЛВЖ и ГЖ</returns>
         double m();
 
         /// <summary>

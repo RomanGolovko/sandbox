@@ -1,4 +1,4 @@
-﻿@model FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith.OverpressCalcWith_FL
+﻿@model FireAndExplosionHazards.BLL.Concrete.OverpressCalcWithOut.OverpressCalcWithOut_FL
 
 <h2>Результаты:</h2>
 
@@ -6,42 +6,35 @@
     <div class="form-group">
         @Html.Label("Давление насыщенного пара", htmlAttributes: new { @class = "control-label col-md-4" })
         <div class="col-md-8">
-            Pн = @Html.Label(Model.Pн().ToString())
+            <strong>Pн = </strong>@Html.Label(Model.Pн().ToString())
         </div>
     </div>
 
     <div class="form-group">
         @Html.Label("Интенсивность испарения", htmlAttributes: new { @class = "control-label col-md-4" })
         <div class="col-md-8">
-            W = @Html.Label(Model.W().ToString())
+            <strong>W = </strong>@Html.Label(Model.W().ToString())
         </div>
     </div>
 
     <div class="form-group">
         @Html.Label("Масса жидкости", htmlAttributes: new { @class = "control-label col-md-4" })
         <div class="col-md-8">
-            m = @Html.Label(Model.m().ToString())
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Стехиометрический коэффициент кислорода в реакции горения", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            β = @Html.Label(Model.β().ToString())
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Cтехиометрическая концентрация паров легковоспламеняющихся и горючих жидкостей", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            Cct = @Html.Label(Model.Cct().ToString())
+           <strong>m = </strong>@Html.Label(Model.m().ToString())
         </div>
     </div>
 
     <div class="form-group">
         @Html.Label("Плотность пара", htmlAttributes: new { @class = "control-label col-md-4" })
         <div class="col-md-8">
-            Pгп = @Html.Label(Model.Pгп().ToString())
+            <strong>Pгп = </strong>@Html.Label(Model.Pгп().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Коэффициент", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>K = </strong>@Html.Label(Model.K().ToString())
         </div>
     </div>
 
@@ -49,7 +42,7 @@
         @Html.Label("Избыточного давления взрыва для паров легковоспламеняющихся и горючих жидкостей",
                     htmlAttributes: new { @class = "control-label col-md-4" })
         <div class="col-md-8">
-            ΔР = @Html.Label(Model.ΔР().ToString())
+            <strong>ΔР = </strong>@Html.Label(Model.ΔР().ToString())
         </div>
     </div>
 

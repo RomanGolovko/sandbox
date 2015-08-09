@@ -1,4 +1,4 @@
-﻿@model FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith.OverpressCalcWith_FG
+﻿@model FireAndExplosionHazards.BLL.Concrete.OverpressCalcWithOut.OverpressCalcWithOut_FG
 
 <h2>Результаты:</h2>
 
@@ -25,6 +25,13 @@
     </div>
 
     <div class="form-group">
+        @Html.Label("Объем газа, который вышел из аппарата", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            Vа = @Html.Label(@Model.Vа().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
         @Html.Label("Масса газа", htmlAttributes: new { @class = "control-label col-md-4" })
         <div class="col-md-8">
             m = @Html.Label(@Model.m().ToString())
@@ -32,23 +39,16 @@
     </div>
 
     <div class="form-group">
-        @Html.Label("Стехиометрический коэффициент кислорода в реакции горения ", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            β = @Html.Label(@Model.β().ToString())
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("Cтехиометрическая концентрация паров ЛВЖ и ГЖ", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            Cct = @Html.Label(@Model.Cct().ToString())
-        </div>
-    </div>
-
-    <div class="form-group">
         @Html.Label("Плотность пара", htmlAttributes: new { @class = "control-label col-md-4" })
         <div class="col-md-8">
             Pгп = @Html.Label(@Model.Pгп().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Коэффициент", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            K = @Html.Label(@Model.K().ToString())
         </div>
     </div>
 

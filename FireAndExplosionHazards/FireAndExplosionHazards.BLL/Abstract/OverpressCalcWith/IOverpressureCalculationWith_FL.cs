@@ -18,6 +18,11 @@
         double Kн { get; }
 
         /// <summary>
+        /// Температура вспышки
+        /// </summary>
+        double Tв { get; set; }
+
+        /// <summary>
         /// Максимальное давление взрыва
         /// </summary>
         double Pmax { get; set; }
@@ -70,7 +75,7 @@
         /// <summary>
         /// Продолжительность испарения
         /// </summary>
-        double τисп { get; set; }
+        double τи { get; set; }
 
 
         /// <summary>

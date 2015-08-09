@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith;
+using FireAndExplosionHazards.BLL.Concrete.OverpressCalcWithOut;
 using FireAndExplosionHazards.UI.Models;
 
 namespace FireAndExplosionHazards.UI.Controllers
 {
-    public class OverpressCalcWith_FGController : Controller
+    public class OverpressCalcWithOut_FGController : Controller
     {
-        // GET: OverpressCalcWith_FG
+        // GET: OverpressCalcWithOut_FG/Index
         public ActionResult Index()
         {
             List<ValueZ> valueZ = new List<ValueZ>()
@@ -22,7 +22,7 @@ namespace FireAndExplosionHazards.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Result(OverpressCalcWith_FG data, double valueZ)
+        public ActionResult Result(OverpressCalcWithOut_FG data, double valueZ)
         {
             data.Z = valueZ;
 

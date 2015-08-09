@@ -1,19 +1,22 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith;
+using FireAndExplosionHazards.BLL.Concrete.OverpressCalcWithOut;
 using FireAndExplosionHazards.UI.Models;
 
 namespace FireAndExplosionHazards.UI.Controllers
 {
-    public class OverpressCalcWith_FGController : Controller
+    public class OverpressCalcWithOut_FLController : Controller
     {
-        // GET: OverpressCalcWith_FG
+        // GET: OverpressCalcWithOut_FL/Index
         public ActionResult Index()
         {
             List<ValueZ> valueZ = new List<ValueZ>()
             {
-                new ValueZ {Value = 1.0, Name = "Водород" },
-                new ValueZ {Value = 0.5, Name = "ГГ (кроме водорода)" },
+                new ValueZ {Value = 0.3, Name = "ЛВЖ и ГЖ, которые нагреты до температуры вспышки и выше" },
+                new ValueZ {Value = 0.3,
+                    Name = "ЛВЖ и ГЖ, которые нагреты ниже температуры вспышки, при условии возможности образования аэрозоля" },
+                new ValueZ {Value = 0,
+                    Name = "ЛВЖ и ГЖ, которые нагреты ниже температуры вспышки, при невозможности образования аэрозоля" }
             };
 
             ViewBag.valueZ = new SelectList(valueZ, "Value", "Name", 2);
@@ -22,7 +25,7 @@ namespace FireAndExplosionHazards.UI.Controllers
         }
 
         [HttpPost]
-        public ActionResult Result(OverpressCalcWith_FG data, double valueZ)
+        public ActionResult Result(OverpressCalcWithOut_FL data, double valueZ)
         {
             data.Z = valueZ;
 

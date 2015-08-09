@@ -171,6 +171,8 @@
     <Compile Include="Controllers\FireLoadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OverpressCalcWithOut_FGController.cs" />
+    <Compile Include="Controllers\OverpressCalcWithOut_FLController.cs" />
     <Compile Include="Controllers\OverpressCalcWith_FGController.cs" />
     <Compile Include="Controllers\OverpressCalcWith_FLController.cs" />
     <Compile Include="Global.asax.cs">
@@ -246,6 +248,10 @@
     <Content Include="Views\OverpressCalcWith_FG\Result.cshtml" />
     <Content Include="Views\FireLoad\Index.cshtml" />
     <Content Include="Views\FireLoad\Result.cshtml" />
+    <Content Include="Views\OverpressCalcWithOut_FL\Index.cshtml" />
+    <Content Include="Views\OverpressCalcWithOut_FG\Index.cshtml" />
+    <Content Include="Views\OverpressCalcWithOut_FG\Result.cshtml" />
+    <Content Include="Views\OverpressCalcWithOut_FL\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

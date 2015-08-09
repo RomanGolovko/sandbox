@@ -1,15 +1,15 @@
-﻿@model FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith.OverpressCalcWith_FL
+﻿@model FireAndExplosionHazards.BLL.Concrete.OverpressCalcWithOut.OverpressCalcWithOut_FL
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Расчет избыточного давления взрыва для паров легковоспламеняющихся и горючих жидкостей, которые состоят из атомов С, Н, О, N, CI, Br, I, F</h2>
+<h2>Расчет избыточного давления взрыва для паров легковоспламеняющихся и горючих жидкостей, которые не состоят из атомов С, Н, О, N, CI, Br, I, F</h2>
 
 @using (Ajax.BeginForm("Result", new AjaxOptions { UpdateTargetId = "results" }))
 {
     @Html.AntiForgeryToken()
-
+    
     <div class="form-horizontal">
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -23,10 +23,10 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Pmax, htmlAttributes: new { @class = "control-label col-md-4" })
+            @Html.LabelFor(model => model.Hт, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
-                @Html.EditorFor(model => model.Pmax, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Pmax, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Hт, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Hт, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -46,6 +46,38 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Pв, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Pв, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Pв, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.T0, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.T0, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.T0, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Aв, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.Aв, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Aв, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.τ, htmlAttributes: new { @class = "control-label col-md-4" })
+            <div class="col-md-8">
+                @Html.EditorFor(model => model.τ, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.τ, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.M, htmlAttributes: new { @class = "control-label col-md-4" })
             <div class="col-md-8">
                 @Html.EditorFor(model => model.M, new { htmlAttributes = new { @class = "form-control" } })
@@ -58,38 +90,6 @@
             <div class="col-md-8">
                 @Html.EditorFor(model => model.tp, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.tp, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nc, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
-                @Html.EditorFor(model => model.Nc, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nc, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nh, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
-                @Html.EditorFor(model => model.Nh, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nh, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.No, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
-                @Html.EditorFor(model => model.No, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.No, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nx, htmlAttributes: new { @class = "control-label col-md-4" })
-            <div class="col-md-8">
-                @Html.EditorFor(model => model.Nx, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Nx, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -150,15 +150,3 @@
 }
 
 <div id="results"></div>
-
-@*section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-            $.validator.methods.range = function (value, element, param) {
-            var globalizedValue = value.replace(".", ",");
-            return this.optional(element) || (globalizedValue >= param[0] && globalizedValue <= param[1]);
-
-            $.validator.methods.number = function (value, element) {
-            return this.optional(element) || /^-?(?:\d+|\d{1,3}(?:[\s\.,]\d{3})+)(?:[\.,]\d+)?$/.test(value);
-            }
-    }
-*@

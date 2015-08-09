@@ -1,11 +1,11 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
-using FireAndExplosionHazards.BLL.Abstract.OverpressCalcWith;
+using FireAndExplosionHazards.BLL.Abstract.OverpressCalcWithOut;
 
-namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
+namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWithOut
 {
-    public class OverpressCalcWith_FG : IOverpressureCalculationWith_FG
+    public class OverpressCalcWithOut_FG : IOverpressCalcWithOut_FG
     {
         [HiddenInput(DisplayValue = false)]
         public double P0 { get { return 101.3; } }  // начальное давление, кПа (допускается принимать таким, что равняется 101,3 кПа);
@@ -17,6 +17,10 @@ namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
         public double Kн { get { return 3; } }      // коэффициент, который учитывает негерметичность помещения 
                                                     // и неадиабатичность процесса горения. Допускается принимать Кн равным 3;
 
+        [HiddenInput(DisplayValue = false)]
+        public double Cр { get { return 1.01 * Math.Pow(10, 3); } } // теплоемкость воздуха, Дж * кг^-1 * К^-1,
+                                                                    // (допускается принимать равной 1,01 * 10^3);
+
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
         [Display(Name = "Tв - температура вспышки, °С")]
@@ -24,10 +28,8 @@ namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
 
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
-        [Display(Name = "Pmax - максимальное давление взрыва стехиометрической газовоздушной смеси в закрытом объеме, кПа")]
-        public double Pmax { get; set; } = 900;     // определяется исследовательским путем или
-                                                    // принимается по справочным данным согласно требованиям п. 5.4. В случае 
-                                                    // отсутствия таких данных, допускается принимать Рmах таким, что равняется 900; 
+        [Display(Name = "Hт - теплота сгорания, Дж * кг^-1")]
+        public double Hт { get; set; }
 
         [Display(Name = "Z - коэффициент участия ГГ во взрыве")]
         public double Z { get; set; }               // коэффициент участия ГГ во взрыве;
@@ -39,6 +41,26 @@ namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
 
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
+        [Display(Name = "Pв - плотность воздуха до взрыва при начальной температуре, кг*м^-3")]
+        public double Pв { get; set; }
+
+        [Required(ErrorMessage = "Поле должно быть установлено")]
+        [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
+        [Display(Name = "T0 - начальная температура воздуха, К")]
+        public double T0 { get; set; }
+
+        [Required(ErrorMessage = "Поле должно быть установлено")]
+        [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
+        [Display(Name = "Aв - кратность воздухообмена, которую создает аварийная вентиляция, с^-1")]
+        public double Aв { get; set; }
+
+        [Required(ErrorMessage = "Поле должно быть установлено")]
+        [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
+        [Display(Name = "τ - продолжительность поступления ГГ в объем помещения, с")]
+        public double τ { get; set; }       // принимается по п. 7.1.2;
+
+        [Required(ErrorMessage = "Поле должно быть установлено")]
+        [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
         [Display(Name = "M - молярная масса, кг * кмоль^(-1)")]
         public double M { get; set; }
 
@@ -46,26 +68,6 @@ namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
         [Display(Name = "tp - расчетная температура, °С")]
         public double tp { get; set; }
-
-        [Required(ErrorMessage = "Поле должно быть установлено")]
-        [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
-        [Display(Name = "Nc - число атомов углерода в молекуле ГГ")]
-        public double Nc { get; set; }
-
-        [Required(ErrorMessage = "Поле должно быть установлено")]
-        [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
-        [Display(Name = "Nh - число атомов водорода в молекуле ГГ")]
-        public double Nh { get; set; }
-
-        [Required(ErrorMessage = "Поле должно быть установлено")]
-        [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
-        [Display(Name = "No - число атомов кислорода в молекуле ГГ")]
-        public double No { get; set; }
-
-        [Required(ErrorMessage = "Поле должно быть установлено")]
-        [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
-        [Display(Name = "Nx - число атомов галогенов в молекуле ГГ")]
-        public double Nx { get; set; }
 
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
@@ -105,27 +107,22 @@ namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
 
         public double ΔР()
         {
-            return (Pmax - P0) * ((m() * Z) / (Vсвоб * Pгп())) * (100 / Cct()) * (1 / Kн);
+            return ((m() * Hт * P0 * Z) / (Vсвоб * Pв * Cр * T0)) * (1 / Kн);
         }
 
-        public double Pгп()
+        public double K()
         {
-            return M / (Vo * (1 + 0.00367 * tp));
-        }
-
-        public double Cct()
-        {
-            return 100 / (1 + 4.84 * β());
-        }
-
-        public double β()
-        {
-            return Nc + ((Nh - Nx) / 4) - (No / 2);
+            return Aв * τ + 1;
         }
 
         public double m()
         {
             return (Vа() + Vт()) * Pгп();
+        }
+
+        public double Pгп()
+        {
+            return M / (Vo * (1 + 0.00367 * tp));
         }
 
         public double Vа()

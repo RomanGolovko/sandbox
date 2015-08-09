@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith;
 using FireAndExplosionHazards.UI.Models;
@@ -31,6 +28,17 @@ namespace FireAndExplosionHazards.UI.Controllers
         public ActionResult Result(OverpressCalcWith_FL data, double valueZ)
         {
             data.Z = valueZ;
+
+            if (data.ΔР() >= 5.0 && data.Tв <= 28.0)
+                ViewBag.message = string.Format("Категория помещения по данному веществу - 'А'(взрывоопасная), " +
+                    "так как ∆P = {0:F4} > 5 кПа и Tв = {1} <= 28 °С", data.ΔР(), data.Tв);
+            else if(data.ΔР() >= 5.0 && data.Tв >= 28.0)
+                ViewBag.message = string.Format("Категория помещения по данному веществу - 'Б'(взрывоопасная), " +
+                    "так как ∆P = {0:F4} > 5 кПа и Tв = {1} >= 28 °С", data.ΔР(), data.Tв);
+            else if (data.ΔР() < 5.0)
+                ViewBag.message = string.Format("Категория помещения по данному веществу - 'В'(пожароопасная), " + 
+                    "так как ∆P = {0:F4} < 5 кПа", data.ΔР());
+
             return PartialView(data);
         }
     }

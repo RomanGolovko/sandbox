@@ -17,6 +17,12 @@ namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
         public double Kн { get { return 3; } }      // коэффициент, который учитывает негерметичность помещения 
                                                     // и неадиабатичность процесса горения. Допускается принимать Кн равным 3;
 
+
+        [Required(ErrorMessage = "Поле должно быть установлено")]
+        [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
+        [Display(Name = "Tв - температура вспышки, °С")]
+        public double Tв { get; set; }
+
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
         [Display(Name = "Pmax - максимальное давление взрыва стехиометрической паровоздушной смеси в закрытом объеме, кПа")]
@@ -24,8 +30,8 @@ namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
                                                     // принимается по справочным данным согласно требованиям п. 5.4. В случае 
                                                     // отсутствия таких данных, допускается принимать Рmах таким, что равняется 900 ; 
 
-        [Display(Name = "Z - коэффициент участия паров во взрыве")]
-        public double Z { get; set; }               // коэффициент участия паров во взрыве;
+        [Display(Name = "Z - коэффициент участия ГГ")]
+        public double Z { get; set; }
 
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
@@ -67,9 +73,8 @@ namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
         public double Fи { get; set; } = 0;
 
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
-        [Display(Name = "τисп - продолжительность испарения, с")]
-        public double τисп { get; set; } = 0;
-
+        [Display(Name = "τи - продолжительность испарения, с")]
+        public double τи { get; set; } = 0;
 
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [RegularExpression("[0-9.,]*", ErrorMessage = "Некорректный ввод, толко цифры")]
@@ -114,7 +119,7 @@ namespace FireAndExplosionHazards.BLL.Concrete.OverpressCalcWith
 
         public double m()
         {
-            return W() * Fи * τисп;
+            return W() * Fи * τи;
         }
 
         public double W()
