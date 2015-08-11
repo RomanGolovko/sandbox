@@ -74,11 +74,15 @@
     <Compile Include="Abstract\OverpressCalcWithOut\IOverpressCalcWithOut_FL.cs" />
     <Compile Include="Abstract\OverpressCalcWith\IOverpressureCalculationWith_FG.cs" />
     <Compile Include="Abstract\OverpressCalcWith\IOverpressureCalculationWith_FL.cs" />
+    <Compile Include="Abstract\TermRadIntens\ITermRadIntens_FB.cs" />
+    <Compile Include="Abstract\TermRadIntens\ITermRadIntens_FL.cs" />
     <Compile Include="Concrete\FireLoad\FireLoad.cs" />
     <Compile Include="Concrete\OverpressCalcWithOut\OverpressCalcWithOut_FG.cs" />
     <Compile Include="Concrete\OverpressCalcWithOut\OverpressCalcWithOut_FL.cs" />
     <Compile Include="Concrete\OverpressCalcWith\OverpressCalcWith_FG.cs" />
     <Compile Include="Concrete\OverpressCalcWith\OverpressCalcWith_FL.cs" />
+    <Compile Include="Concrete\TermRadIntens\TermRadIntens_FB.cs" />
+    <Compile Include="Concrete\TermRadIntens\TermRadIntens_FL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

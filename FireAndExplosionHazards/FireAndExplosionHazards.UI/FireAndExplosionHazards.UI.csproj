@@ -175,6 +175,8 @@
     <Compile Include="Controllers\OverpressCalcWithOut_FLController.cs" />
     <Compile Include="Controllers\OverpressCalcWith_FGController.cs" />
     <Compile Include="Controllers\OverpressCalcWith_FLController.cs" />
+    <Compile Include="Controllers\TermRadIntens_FBController.cs" />
+    <Compile Include="Controllers\TermRadIntens_FLController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -252,6 +254,10 @@
     <Content Include="Views\OverpressCalcWithOut_FG\Index.cshtml" />
     <Content Include="Views\OverpressCalcWithOut_FG\Result.cshtml" />
     <Content Include="Views\OverpressCalcWithOut_FL\Result.cshtml" />
+    <Content Include="Views\TermRadIntens_FB\Index.cshtml" />
+    <Content Include="Views\TermRadIntens_FB\Result.cshtml" />
+    <Content Include="Views\TermRadIntens_FL\Index.cshtml" />
+    <Content Include="Views\TermRadIntens_FL\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
