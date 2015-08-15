@@ -1,0 +1,47 @@
+﻿@model FireAndExplosionHazards.BLL.Concrete.TRI.FireBall
+
+<h2>Результаты:</h2>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.Label("Коэффициент пропускания теплового излучения сквозь атмосферу", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>ψ = </strong>@Html.Label(Model.ψ().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Время существования 'огненного шара'", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>ts = </strong>@Html.Label(Model.ts().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Эффективный диаметр 'огненного шара'", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>Ds = </strong>@Html.Label(Model.Ds().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Высота пламени", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>H = </strong>@Html.Label(Model.H().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Угловой коэффициент излучения", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>Fq = </strong>@Html.Label(Model.Fq().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Интенсивность теплового излучения", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>q = </strong>@Html.Label(Model.q().ToString())
+        </div>
+    </div>
+</div>

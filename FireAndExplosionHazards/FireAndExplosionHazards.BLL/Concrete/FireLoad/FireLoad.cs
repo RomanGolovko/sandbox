@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using FireAndExplosionHazards.BLL.Abstract.FireLoad;
 
 namespace FireAndExplosionHazards.BLL.Concrete.FireLoad
 {
-    public class FireLoad : IFireLoad
+    public class FireLoad
     {
         [Required(ErrorMessage = "Поле должно быть установлено")]
         [Display(Name = "S - площадь размещения материалов пожарной нагрузки, м^2")]
@@ -17,15 +16,22 @@ namespace FireAndExplosionHazards.BLL.Concrete.FireLoad
         [Display(Name = "Qp - нижняя теплота сгорания материала из пожарной нагрузки, МДж/кг")]
         public double Qp { get; set; }
 
-        
-        public double Q ()
+        /// <summary>
+        /// Величина пожарной нагрузки
+        /// </summary>
+        /// <returns>Величину пожарной нагрузки</returns>
+        public double Q()
         {
             return G * Qp;
         }
 
+        /// <summary>
+        /// Удельная пожарная нагрузка
+        /// </summary>
+        /// <returns>Удельную пожарную нагрузку</returns>
         public double g()
         {
-            return  Q() / S;
+            return Q() / S;
         }
     }
 }

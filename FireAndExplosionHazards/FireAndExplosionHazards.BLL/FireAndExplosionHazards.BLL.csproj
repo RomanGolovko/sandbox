@@ -69,20 +69,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\FireLoad\IFireLoad.cs" />
-    <Compile Include="Abstract\OverpressCalcWithOut\IOverpressCalcWithOut_FG.cs" />
-    <Compile Include="Abstract\OverpressCalcWithOut\IOverpressCalcWithOut_FL.cs" />
-    <Compile Include="Abstract\OverpressCalcWith\IOverpressureCalculationWith_FG.cs" />
-    <Compile Include="Abstract\OverpressCalcWith\IOverpressureCalculationWith_FL.cs" />
-    <Compile Include="Abstract\TermRadIntens\ITermRadIntens_FB.cs" />
-    <Compile Include="Abstract\TermRadIntens\ITermRadIntens_FL.cs" />
+    <Compile Include="Abstract\OverpressCalc.cs" />
+    <Compile Include="Abstract\OverpressCalcWith.cs" />
+    <Compile Include="Abstract\TermRadIntens.cs" />
     <Compile Include="Concrete\FireLoad\FireLoad.cs" />
-    <Compile Include="Concrete\OverpressCalcWithOut\OverpressCalcWithOut_FG.cs" />
-    <Compile Include="Concrete\OverpressCalcWithOut\OverpressCalcWithOut_FL.cs" />
-    <Compile Include="Concrete\OverpressCalcWith\OverpressCalcWith_FG.cs" />
-    <Compile Include="Concrete\OverpressCalcWith\OverpressCalcWith_FL.cs" />
-    <Compile Include="Concrete\TermRadIntens\TermRadIntens_FB.cs" />
-    <Compile Include="Concrete\TermRadIntens\TermRadIntens_FL.cs" />
+    <Compile Include="Concrete\OCW\FlamGas.cs" />
+    <Compile Include="Concrete\OCW\FlamLiq.cs" />
+    <Compile Include="Concrete\OC\CombDust.cs" />
+    <Compile Include="Concrete\OC\FlamGas.cs" />
+    <Compile Include="Concrete\OC\FlamLiq.cs" />
+    <Compile Include="Concrete\TRI\FireBall.cs" />
+    <Compile Include="Concrete\TRI\FlamLiq.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

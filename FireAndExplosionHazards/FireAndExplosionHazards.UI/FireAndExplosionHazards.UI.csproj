@@ -171,12 +171,13 @@
     <Compile Include="Controllers\FireLoadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\OverpressCalcWithOut_FGController.cs" />
-    <Compile Include="Controllers\OverpressCalcWithOut_FLController.cs" />
-    <Compile Include="Controllers\OverpressCalcWith_FGController.cs" />
-    <Compile Include="Controllers\OverpressCalcWith_FLController.cs" />
-    <Compile Include="Controllers\TermRadIntens_FBController.cs" />
-    <Compile Include="Controllers\TermRadIntens_FLController.cs" />
+    <Compile Include="Controllers\OCCombDustController.cs" />
+    <Compile Include="Controllers\OCFlamGasController.cs" />
+    <Compile Include="Controllers\OCFlamLiqController.cs" />
+    <Compile Include="Controllers\OCWFlamGasController.cs" />
+    <Compile Include="Controllers\OCWFlamLiqController.cs" />
+    <Compile Include="Controllers\TRIFireBallController.cs" />
+    <Compile Include="Controllers\TRIFlamLiqController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -244,20 +245,22 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\OverpressCalcWith_FL\Index.cshtml" />
-    <Content Include="Views\OverpressCalcWith_FL\Result.cshtml" />
-    <Content Include="Views\OverpressCalcWith_FG\Index.cshtml" />
-    <Content Include="Views\OverpressCalcWith_FG\Result.cshtml" />
     <Content Include="Views\FireLoad\Index.cshtml" />
     <Content Include="Views\FireLoad\Result.cshtml" />
-    <Content Include="Views\OverpressCalcWithOut_FL\Index.cshtml" />
-    <Content Include="Views\OverpressCalcWithOut_FG\Index.cshtml" />
-    <Content Include="Views\OverpressCalcWithOut_FG\Result.cshtml" />
-    <Content Include="Views\OverpressCalcWithOut_FL\Result.cshtml" />
-    <Content Include="Views\TermRadIntens_FB\Index.cshtml" />
-    <Content Include="Views\TermRadIntens_FB\Result.cshtml" />
-    <Content Include="Views\TermRadIntens_FL\Index.cshtml" />
-    <Content Include="Views\TermRadIntens_FL\Result.cshtml" />
+    <Content Include="Views\OCFlamGas\Index.cshtml" />
+    <Content Include="Views\OCFlamGas\Result.cshtml" />
+    <Content Include="Views\OCFlamLiq\Index.cshtml" />
+    <Content Include="Views\OCFlamLiq\Result.cshtml" />
+    <Content Include="Views\TRIFireBall\Index.cshtml" />
+    <Content Include="Views\TRIFireBall\Result.cshtml" />
+    <Content Include="Views\TRIFlamLiq\Index.cshtml" />
+    <Content Include="Views\TRIFlamLiq\Result.cshtml" />
+    <Content Include="Views\OCWFlamGas\Index.cshtml" />
+    <Content Include="Views\OCWFlamGas\Result.cshtml" />
+    <Content Include="Views\OCWFlamLiq\Index.cshtml" />
+    <Content Include="Views\OCWFlamLiq\Result.cshtml" />
+    <Content Include="Views\OCCombDust\Index.cshtml" />
+    <Content Include="Views\OCCombDust\Result.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

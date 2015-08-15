@@ -1,0 +1,40 @@
+﻿@model FireAndExplosionHazards.BLL.Concrete.OC.FlamLiq
+
+<h2>Результаты:</h2>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.Label("Давление насыщенного пара", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>Pн = </strong>@Html.Label(Model.Pн().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Интенсивность испарения", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>W = </strong>@Html.Label(Model.W().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Масса жидкости", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>m = </strong>@Html.Label(Model.m().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Избыточного давления взрыва для паров легковоспламеняющихся и горючих жидкостей",
+                    htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>ΔР = </strong>@Html.Label(Model.ΔР().ToString())
+        </div>
+    </div>
+
+    <div class=" form-group">
+        <div class="col-md-12">
+            @ViewBag.message
+        </div>
+    </div>
+</div>

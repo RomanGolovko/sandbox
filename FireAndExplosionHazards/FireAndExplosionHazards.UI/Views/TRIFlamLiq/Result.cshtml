@@ -1,0 +1,75 @@
+﻿@model FireAndExplosionHazards.BLL.Concrete.TRI.FlamLiq
+
+<h2>Результаты:</h2>
+
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.Label("Коэффициент пропускания теплового излучения сквозь атмосферу", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>ψ = </strong>@Html.Label(Model.ψ().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>h = </strong>@Html.Label(Model.h().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>S = </strong>@Html.Label(Model.S().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>B = </strong>@Html.Label(Model.B().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>A = </strong>@Html.Label(Model.A().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Фактор облученности для горизонтальной площадки", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>Fг = </strong>@Html.Label(Model.Fг().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Фактор облученности для вертикальной площадки", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>Fв = </strong>@Html.Label(Model.Fв().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Угловой коэффициент излучения", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>Fq = </strong>@Html.Label(Model.Fq().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Высота пламени", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>H = </strong>@Html.Label(Model.H().ToString())
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Интенсивность теплового излучения", htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-8">
+            <strong>q = </strong>@Html.Label(Model.q().ToString())
+        </div>
+    </div>
+</div>
