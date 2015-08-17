@@ -4,8 +4,7 @@
 patterns with Ninject (IoC container), unit tests.
 
 2. Garage is the web implementation of the Vehicle_department.
-*Used technology and frameworks: ASP.NET MVC, Three-tiered architecture, Patterns (Repository, Unit Of Work and DI) 
-with Ninject (IoC container), EF (code first), SQL, Automapper.
+*Used technology and frameworks: ASP.NET MVC, Three-tiered architecture, Patterns (Repository, Unit Of Work and DI) with Ninject (IoC container), EF (code first), SQL, Automapper.
 
 3. FireAndExplosionHazards the project is made under Ukrainian state standards calculation of fire safety.
 *Used technology and frameworks: ASP.NET MVC, AJAX.
