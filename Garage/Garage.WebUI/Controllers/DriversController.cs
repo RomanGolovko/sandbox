@@ -1,60 +1,91 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-
-using Garage.Domain.Abstract;
-using Garage.Domain.Entities;
+using AutoMapper;
+using Garage.BLL.Abstract;
+using Garage.BLL.DTO;
+using Garage.BLL.Infrastructure;
+using Garage.WebUI.Models;
 
 namespace Garage.WebUI.Controllers
 {
     public class DriversController : Controller
     {
-        private IRepository<Driver> db;
-
-        public DriversController(IRepository<Driver> driverRepository)
+        IService<DriverDTO> driverService;
+        public DriversController(IService<DriverDTO> serv)
         {
-            db = driverRepository;
+            driverService = serv;
         }
 
+        // GET: Drivers
         public ActionResult Index()
         {
-            return View(db.GetAll);
+            Mapper.CreateMap<DriverDTO, DriverViewModel>();
+            var drivers = Mapper.Map<IEnumerable<DriverDTO>, List<DriverViewModel>>(driverService.GetAll());
+
+            return View(drivers);
         }
 
-        public ViewResult Edit(int? id)
+        // GET: Drivers/Details/5
+        public ActionResult Details(int id)
         {
-            Driver driver = db.GetAll.FirstOrDefault(d => d.Id == id);
+            Mapper.CreateMap<DriverDTO, DriverViewModel>();
+            var driver = Mapper.Map<DriverDTO, DriverViewModel>(driverService.GetCurrent(id));
+
             return View(driver);
         }
 
-        [HttpPost]
-        public ActionResult Edit(Driver driver)
+        public ActionResult Create()
         {
-            if (ModelState.IsValid)
+            return View("Edit", new DriverViewModel());
+        }
+
+        // GET: Drivers/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            Mapper.CreateMap<DriverDTO, DriverViewModel>();
+            var driver = Mapper.Map<DriverDTO, DriverViewModel>(driverService.GetCurrent(id));
+
+            return View(driver);
+        }
+
+        // POST: Drivers/Edit/5
+        [HttpPost]
+        public ActionResult Edit(DriverViewModel driverModel)
+        {
+            try
             {
-                db.Save(driver);
+                Mapper.CreateMap<DriverViewModel, DriverDTO>();
+                var driver = Mapper.Map<DriverViewModel, DriverDTO>(driverModel);
+                driverService.Save(driver);
                 TempData["message"] = string.Format("{0} has been saved", driver.Name);
+
                 return RedirectToAction("Index");
             }
-            else
+            catch(ValidationException ex)
             {
-                // there is something wrong with the data values
-                return View(driver);
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return View(driverModel);
             }
         }
 
-        public ViewResult Create()
-        {
-            return View("Edit", new Driver());
-        }
-
+        // POST: Drivers/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            Driver deletedDriver = db.Delete(id);
-            if (deletedDriver != null)
-                TempData["message"] = string.Format("{0} was deleted", deletedDriver.Name);
+            try
+            {
+                DriverDTO deletedDriver = driverService.Delete(id);
 
-            return RedirectToAction("Index");
+                if (deletedDriver != null)
+                    TempData["message"] = string.Format("{0} was deleted", deletedDriver.Name);
+
+                return RedirectToAction("Index");
+            }
+            catch (ValidationException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return View();
+            }
         }
     }
 }

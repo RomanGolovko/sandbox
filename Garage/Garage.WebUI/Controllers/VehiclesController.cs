@@ -1,60 +1,95 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-
-using Garage.Domain.Abstract;
-using Garage.Domain.Entities;
+using AutoMapper;
+using Garage.BLL.Abstract;
+using Garage.BLL.DTO;
+using Garage.BLL.Infrastructure;
+using Garage.WebUI.Models;
 
 namespace Garage.WebUI.Controllers
 {
     public class VehiclesController : Controller
     {
-        private IRepository<Vehicle> db;
-
-        public VehiclesController(IRepository<Vehicle> vehiclesRepository)
+        IService<VehicleDTO> vehicleService;
+        public VehiclesController(IService<VehicleDTO> vehServ)
         {
-            db = vehiclesRepository;
+            vehicleService = vehServ;
         }
 
+        // GET: Vehicles
         public ActionResult Index()
         {
-            return View(db.GetAll);
+            Mapper.CreateMap<VehicleDTO, VehicleViewModel>();
+            var vehicles = Mapper.Map<IEnumerable<VehicleDTO>, List<VehicleViewModel>>(vehicleService.GetAll());
+
+            return View(vehicles);
         }
 
-        public ViewResult Edit(int? id)
+        // GET: Vehicles/Details/5
+        public ActionResult Details(int id)
         {
-            Vehicle vehicle = db.GetAll.FirstOrDefault(d => d.Id == id);
+            Mapper.CreateMap<VehicleDTO, VehicleViewModel>();
+            var vehicle = Mapper.Map<VehicleDTO, VehicleViewModel>(vehicleService.GetCurrent(id));
+
             return View(vehicle);
         }
 
-        [HttpPost]
-        public ActionResult Edit(Vehicle vehicle)
+        // GET: Vehicles/Create
+        public ActionResult Create()
         {
-            if (ModelState.IsValid)
+            return View("Edit", new VehicleViewModel());
+        }
+
+        // GET: Vehicles/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            Mapper.CreateMap<VehicleDTO, VehicleViewModel>();
+            var vehicle = Mapper.Map<VehicleDTO, VehicleViewModel>(vehicleService.GetCurrent(id));
+
+            //Mapper.CreateMap<DriverDTO, DriverViewModel>();
+            //var allDrivers = Mapper.Map<IEnumerable<DriverDTO>, List<DriverViewModel>>(driverService.GetAll());
+            //ViewBag.drivers = new SelectList(allDrivers, "Id", "Name", 1);
+
+            return View(vehicle);
+        }
+
+        // POST: Vehicles/Edit/5
+        [HttpPost]
+        public ActionResult Edit(VehicleViewModel vehicleModel)
+        {
+            try
             {
-                db.Save(vehicle);
+                Mapper.CreateMap<VehicleViewModel, VehicleDTO>();
+                var vehicle = Mapper.Map<VehicleViewModel, VehicleDTO>(vehicleModel);
+                vehicleService.Save(vehicle);
                 TempData["message"] = string.Format("{0} has been saved", vehicle.Brand);
+
                 return RedirectToAction("Index");
             }
-            else
+            catch (ValidationException ex)
             {
-                // there is something wrong with the data values
-                return View(vehicle);
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return View(vehicleModel);
             }
         }
 
-        public ViewResult Create()
-        {
-            return View("Edit", new Vehicle());
-        }
-
+        // POST: Vehicles/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
-            Vehicle deletedVehicle = db.Delete(id);
-            if (deletedVehicle != null)
-                TempData["message"] = string.Format("{0} was deleted", deletedVehicle.Brand);
+            try
+            {
+                VehicleDTO deletedVehicle = vehicleService.Delete(id);
+                if (deletedVehicle != null)
+                    TempData["message"] = string.Format("{0} was deleted", deletedVehicle.Brand);
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            catch (ValidationException ex)
+            {
+                ModelState.AddModelError(ex.Property, ex.Message);
+                return View();
+            }
         }
     }
 }

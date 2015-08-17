@@ -5,10 +5,11 @@ namespace Garage.WebUI.App_Start
 {
     using System;
     using System.Web;
-
+    using BLL.Infrastructure;
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
 
     using Ninject;
+    using Ninject.Modules;
     using Ninject.Web.Common;
 
     public static class NinjectWebCommon 
@@ -39,7 +40,8 @@ namespace Garage.WebUI.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            var modules = new INinjectModule[] { new ServiceModule("GarageDB") };
+            var kernel = new StandardKernel(modules);
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -61,6 +63,7 @@ namespace Garage.WebUI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            System.Web.Mvc.DependencyResolver.SetResolver(new Garage.WebUI.Util.NinjectDependencyResolver(kernel));
         }        
     }
 }
