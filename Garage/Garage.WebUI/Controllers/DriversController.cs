@@ -8,6 +8,7 @@ using Garage.WebUI.Models;
 
 namespace Garage.WebUI.Controllers
 {
+    [Authorize]
     public class DriversController : Controller
     {
         IService<DriverDTO> driverService;
@@ -17,6 +18,7 @@ namespace Garage.WebUI.Controllers
         }
 
         // GET: Drivers
+        [AllowAnonymous]
         public ActionResult Index()
         {
             Mapper.CreateMap<DriverDTO, DriverViewModel>();
@@ -26,6 +28,7 @@ namespace Garage.WebUI.Controllers
         }
 
         // GET: Drivers/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int id)
         {
             Mapper.CreateMap<DriverDTO, DriverViewModel>();
