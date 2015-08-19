@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Garage.WebUI.Controllers;
 
-namespace Garage.Tests.Controllers
+namespace Garage.Tests.ControllersTest
 {
     [TestClass]
     public class HomeControllerTest

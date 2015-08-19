@@ -88,10 +88,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\DriversControllerTest.cs" />
-    <Compile Include="Controllers\VehiclesControllerTests.cs" />
+    <Compile Include="BLLTest\DriverServiceTest.cs" />
+    <Compile Include="BLLTest\VehicleServiceTests.cs" />
+    <Compile Include="ControllersTest\DriversControllerTest.cs" />
+    <Compile Include="ControllersTest\VehiclesControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="ControllersTest\HomeControllerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -103,6 +105,10 @@
     <ProjectReference Include="..\Garage.BLL\Garage.BLL.csproj">
       <Project>{4b9574ac-70b7-4391-a1fe-fbc44977868d}</Project>
       <Name>Garage.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Garage.DAL\Garage.DAL.csproj">
+      <Project>{318f78ed-002d-498f-98e6-f6b6d01f9e6c}</Project>
+      <Name>Garage.DAL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Garage.WebUI\Garage.WebUI.csproj">
       <Project>{FA2C5271-F7D6-4F72-93B7-931ACC8F698E}</Project>

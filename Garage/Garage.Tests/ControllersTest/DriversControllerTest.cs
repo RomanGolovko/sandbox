@@ -7,7 +7,7 @@ using Garage.WebUI.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 
-namespace Garage.Tests.Controllers
+namespace Garage.Tests.ControllersTest
 {
     [TestClass]
     public class DriversControllerTest
