@@ -29,7 +29,7 @@ namespace Garage.WebUI.Controllers
 
         // GET: Drivers/Details/5
         [AllowAnonymous]
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             Mapper.CreateMap<DriverDTO, DriverViewModel>();
             var driver = Mapper.Map<DriverDTO, DriverViewModel>(driverService.GetCurrent(id));
