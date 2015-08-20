@@ -1,34 +1,6 @@
 ﻿@model IEnumerable<Garage.WebUI.Models.VehicleViewModel>
 
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Vehicles Info</h2>
-
-<ul class="nav nav-tabs">
-    <li>@Html.ActionLink("Drivers info", "Index", "Drivers")</li>
-    <li class="active">@Html.ActionLink("Vehicles info", "Index", "Vehicles")</li>
-</ul>
-
-<br />
-
-@using (Ajax.BeginForm("Search", FormMethod.Post, new AjaxOptions { UpdateTargetId = "list" }, new { @class = "form-inline", role = "form" }))
-{
-    <div class="col-md-3 col-md-offset-7">
-        <input type="text" name="str" class="form-control" placeholder="search parameters" />
-        @*Html.TextBox("str", "", new { htmlAttributes = new { @class = "form-control" }, placeholder = "search parameters" })*@
-    </div>
-
-    <div>
-        <input type="submit" value="Search" class="btn btn-default">
-    </div>
-}
-
-<br />
-
-
-<table id="list" class="table">
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Brand)
@@ -92,7 +64,3 @@
 }
 
 </table>
-
-<p>
-    @Html.ActionLink("Add New Vehicle", "Create", null, new { @class = "btn btn-default" })
-</p>

@@ -28,6 +28,22 @@ namespace Garage.Tests.ControllersTest
         }
 
         [TestMethod]
+        public void SearchViewModelNotNull()
+        {
+            // Arrange
+            string str = "";
+            var mock = new Mock<IService<DriverDTO>>();
+            mock.Setup(a => a.Search(str)).Returns(new List<DriverDTO>());
+            DriversController controller = new DriversController(mock.Object);
+
+            // Act
+            PartialViewResult result = controller.Search(str) as PartialViewResult;
+
+            // Assert
+            Assert.IsNotNull(result.Model);
+        }
+
+        [TestMethod]
         public void DetailsViewModelNotNull()
         {
             // Arrange

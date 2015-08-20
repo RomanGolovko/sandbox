@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Garage.BLL.Abstract;
 using Garage.BLL.DTO;
@@ -33,6 +34,27 @@ namespace Garage.BLL.Concrete
         {
             Mapper.CreateMap<Driver, DriverDTO>();
             return Mapper.Map<IEnumerable<Driver>, List<DriverDTO>>(db.Drivers.GetAll());
+        }
+
+        public IEnumerable<DriverDTO> Search(string str)
+        {
+            Mapper.CreateMap<Driver, DriverDTO>();
+            var drivers = Mapper.Map<IEnumerable<Driver>, List<DriverDTO>>(db.Drivers.GetAll());
+
+            if (string.IsNullOrEmpty(str))
+            {
+                return drivers;
+            }
+            else
+            {
+                List<DriverDTO> driversList = new List<DriverDTO>();
+                foreach (var item in drivers.Where(d => d.Name.ToLower().Contains(str.ToLower())))
+                {
+                    driversList.Add(item);
+                }
+
+                return driversList;
+            }
         }
 
         public void Save(DriverDTO item)

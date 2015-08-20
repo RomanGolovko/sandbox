@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Garage.BLL.Abstract;
 using Garage.BLL.DTO;
@@ -33,6 +34,30 @@ namespace Garage.BLL.Concrete
             return Mapper.Map<IEnumerable<Vehicle>, List<VehicleDTO>>(db.Vehicles.GetAll());
         }
 
+        public IEnumerable<VehicleDTO> Search(string str)
+        {
+            Mapper.CreateMap<Vehicle, VehicleDTO>();
+            var vehicles = Mapper.Map<IEnumerable<Vehicle>, List<VehicleDTO>>(db.Vehicles.GetAll());
+
+            if (string.IsNullOrEmpty(str))
+            {
+                return vehicles;
+            }
+            else
+            {
+                List<VehicleDTO> vehiclesList = new List<VehicleDTO>();
+
+                foreach (var item in vehicles.Where(v => v.Brand.ToLower().Contains(str.ToLower())).Union(
+                                     vehicles.Where(v => v.StateNum.ToLower().Contains(str.ToLower())).Union(
+                                     vehicles.Where(v => v.Color.ToLower().Contains(str.ToLower())).Union(
+                                     vehicles.Where(v => v.VinCode.ToLower().Contains(str.ToLower()))))))
+                {
+                    vehiclesList.Add(item);
+                }
+
+                return vehiclesList;
+            }
+        }
         public void Save(VehicleDTO item)
         {
             Vehicle vehicle = new Vehicle

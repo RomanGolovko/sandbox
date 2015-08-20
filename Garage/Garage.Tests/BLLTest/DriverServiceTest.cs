@@ -27,6 +27,22 @@ namespace Garage.Tests.BLLTest
         }
 
         [TestMethod]
+        public void CanSearchDrivers()
+        {
+            //Arrange
+            string str = "iva";
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(a => a.Drivers.GetAll()).Returns(new List<Driver>());
+            DriverService service = new DriverService(mock.Object);
+
+            //Act
+            var result = service.Search(str);
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
         public void CanGetAllDrivers()
         {
             // Arrange

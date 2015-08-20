@@ -6,6 +6,7 @@ namespace Garage.BLL.Abstract
     {
         T GetCurrent(int? id);
         IEnumerable<T> GetAll();
+        IEnumerable<T> Search(string str);
         void Save(T item);
         T Delete(int? id);
     }

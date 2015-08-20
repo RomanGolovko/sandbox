@@ -27,6 +27,17 @@ namespace Garage.WebUI.Controllers
             return View(vehicles);
         }
 
+        // POST: Vehicles/Search/5
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Search(string str)
+        {
+            Mapper.CreateMap<VehicleDTO, VehicleViewModel>();
+            var searchedVehicles = Mapper.Map<IEnumerable<VehicleDTO>, List<VehicleViewModel>>(vehicleService.Search(str));
+
+            return PartialView(searchedVehicles);
+        }
+
         // GET: Vehicles/Details/5
         [AllowAnonymous]
         public ActionResult Details(int id)

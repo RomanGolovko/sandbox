@@ -27,6 +27,17 @@ namespace Garage.WebUI.Controllers
             return View(drivers);
         }
 
+        // POST: Drivers/Search/5
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Search(string str)
+        {
+            Mapper.CreateMap<DriverDTO, DriverViewModel>();
+            var searchedDrivers = Mapper.Map<IEnumerable<DriverDTO>, List<DriverViewModel>>(driverService.Search(str));
+
+            return PartialView(searchedDrivers);
+        }
+
         // GET: Drivers/Details/5
         [AllowAnonymous]
         public ActionResult Details(int? id)
@@ -37,6 +48,7 @@ namespace Garage.WebUI.Controllers
             return View(driver);
         }
 
+        // GET: Drivers/Create
         public ActionResult Create()
         {
             return View("Edit", new DriverViewModel());

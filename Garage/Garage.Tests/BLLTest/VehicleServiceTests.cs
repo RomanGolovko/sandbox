@@ -27,6 +27,22 @@ namespace Garage.Tests.BLLTest
         }
 
         [TestMethod]
+        public void CanSearchVehicles()
+        {
+            // Arrange
+            string str = "bmw";
+            var mock = new Mock<IUnitOfWork>();
+            mock.Setup(a => a.Vehicles.GetAll()).Returns(new List<Vehicle>());
+            VehicleService service = new VehicleService(mock.Object);
+
+            //Act
+            var result = service.Search(str);
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
         public void CanGetAllVehicles()
         {
             // Arrange
