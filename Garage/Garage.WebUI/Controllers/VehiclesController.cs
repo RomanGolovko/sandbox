@@ -62,6 +62,7 @@ namespace Garage.WebUI.Controllers
 
             //Mapper.CreateMap<DriverDTO, DriverViewModel>();
             //var allDrivers = Mapper.Map<IEnumerable<DriverDTO>, List<DriverViewModel>>(driverService.GetAll());
+            //Debug.Assert(allDrivers != null);
             //ViewBag.drivers = new SelectList(allDrivers, "Id", "Name", 1);
 
             return View(vehicle);
@@ -87,8 +88,7 @@ namespace Garage.WebUI.Controllers
             }
         }
 
-        // POST: Vehicles/Delete/5
-        [HttpPost]
+        // GET: Vehicles/Delete/5
         public ActionResult Delete(int? id)
         {
             try

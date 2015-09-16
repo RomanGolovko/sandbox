@@ -83,8 +83,7 @@ namespace Garage.WebUI.Controllers
             }
         }
 
-        // POST: Drivers/Delete/5
-        [HttpPost]
+        // GET: Drivers/Delete/5
         public ActionResult Delete(int? id)
         {
             try
