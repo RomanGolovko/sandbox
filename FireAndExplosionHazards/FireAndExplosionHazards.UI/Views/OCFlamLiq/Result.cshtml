@@ -5,31 +5,31 @@
 <div class="form-horizontal">
     <div class="form-group">
         @Html.Label("Давление насыщенного пара", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>Pн = </strong>@Html.Label(Model.Pн().ToString())
-        </div>
+        <strong>
+            <strong>Pн = </strong>@Html.Label(Model.Pн().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Интенсивность испарения", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>W = </strong>@Html.Label(Model.W().ToString())
-        </div>
+        <strong>
+            <strong>W = </strong>@Html.Label(Model.W().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Масса жидкости", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>m = </strong>@Html.Label(Model.m().ToString())
-        </div>
+        <strong>
+            <strong>m = </strong>@Html.Label(Model.m().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Избыточного давления взрыва для паров легковоспламеняющихся и горючих жидкостей",
                     htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>ΔР = </strong>@Html.Label(Model.ΔР().ToString())
-        </div>
+        <strong>
+            <strong>ΔР = </strong>@Html.Label(Model.ΔР().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class=" form-group">

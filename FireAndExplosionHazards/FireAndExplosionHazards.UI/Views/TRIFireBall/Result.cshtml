@@ -5,43 +5,43 @@
 <div class="form-horizontal">
     <div class="form-group">
         @Html.Label("Коэффициент пропускания теплового излучения сквозь атмосферу", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>ψ = </strong>@Html.Label(Model.ψ().ToString())
-        </div>
+        <strong>
+            ψ = @Html.Label(Model.ψ().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Время существования 'огненного шара'", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>ts = </strong>@Html.Label(Model.ts().ToString())
-        </div>
+        <strong>
+            ts = @Html.Label(Model.ts().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Эффективный диаметр 'огненного шара'", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>Ds = </strong>@Html.Label(Model.Ds().ToString())
-        </div>
+        <strong>
+            Ds = @Html.Label(Model.Ds().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Высота пламени", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>H = </strong>@Html.Label(Model.H().ToString())
-        </div>
+        <strong>
+            H = @Html.Label(Model.H().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Угловой коэффициент излучения", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>Fq = </strong>@Html.Label(Model.Fq().ToString())
-        </div>
+        <strong>
+            Fq = @Html.Label(Model.Fq().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Интенсивность теплового излучения", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>q = </strong>@Html.Label(Model.q().ToString())
-        </div>
+        <strong>
+            q = >@Html.Label(Model.q().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 </div>

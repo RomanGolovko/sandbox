@@ -5,53 +5,53 @@
 <div class="form-horizontal">
     <div class="form-group">
         @Html.Label("Масса пыли в доступные местах", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            m2 = @Html.Label(@Model.m2().ToString())
-        </div>
+        <strong>
+            m2 = @Html.Label(@Model.m2().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Масса пыли в труднодоступные местах", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            m1 = @Html.Label(@Model.m1().ToString())
-        </div>
+        <strong>
+            m1 = @Html.Label(@Model.m1().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Масса пыли, которая отложилась в помещении к моменту аварии", htmlAttributes: new { @class = "control-label col-md-4" })
         <div class="col-md-8">
-            mп = @Html.Label(@Model.mп().ToString())
+            mп = @Html.Label(@Model.mп().ToString(), htmlAttributes: new { @class = "control-label" })
         </div>
     </div>
 
     <div class="form-group">
         @Html.Label("Расчетная масса пыли, которая поступила в помещение в результате аварийной ситуации из аппаратов и технологического оборудования",
             htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            mав = @Html.Label(@Model.mав().ToString())
-        </div>
+        <strong>
+            mав = @Html.Label(@Model.mав().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Расчетная масса части отложившейся в помещении пыли, которая перешла в состояние аэрозоля", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            mвз = @Html.Label(@Model.mвз().ToString())
-        </div>
+        <strong>
+            mвз = @Html.Label(@Model.mвз().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Масса пыли", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            m = @Html.Label(@Model.m().ToString())
-        </div>
+        <strong>
+            m = @Html.Label(@Model.m().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Избыточного давления взрыва для горючей пыли",
         htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            ΔР = @Html.Label(@Model.ΔР().ToString())
-        </div>
+        <strong>
+            ΔР = @Html.Label(@Model.ΔР().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class=" form-group">

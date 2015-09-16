@@ -5,71 +5,71 @@
 <div class="form-horizontal">
     <div class="form-group">
         @Html.Label("Коэффициент пропускания теплового излучения сквозь атмосферу", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>ψ = </strong>@Html.Label(Model.ψ().ToString())
-        </div>
+        <strong>
+            ψ = @Html.Label(Model.ψ().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>h = </strong>@Html.Label(Model.h().ToString())
-        </div>
+        <strong>
+            h = @Html.Label(Model.h().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>S = </strong>@Html.Label(Model.S().ToString())
-        </div>
+        <strong>
+            S = @Html.Label(Model.S().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>B = </strong>@Html.Label(Model.B().ToString())
-        </div>
+        <strong>
+            B = @Html.Label(Model.B().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>A = </strong>@Html.Label(Model.A().ToString())
-        </div>
+        <strong>
+            A = @Html.Label(Model.A().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Фактор облученности для горизонтальной площадки", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>Fг = </strong>@Html.Label(Model.Fг().ToString())
-        </div>
+        <strong>
+            Fг = @Html.Label(Model.Fг().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Фактор облученности для вертикальной площадки", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>Fв = </strong>@Html.Label(Model.Fв().ToString())
-        </div>
+        <strong>
+            Fв = @Html.Label(Model.Fв().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Угловой коэффициент излучения", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>Fq = </strong>@Html.Label(Model.Fq().ToString())
-        </div>
+        <strong>
+            Fq = @Html.Label(Model.Fq().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Высота пламени", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>H = </strong>@Html.Label(Model.H().ToString())
-        </div>
+        <strong>
+            H = @Html.Label(Model.H().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 
     <div class="form-group">
         @Html.Label("Интенсивность теплового излучения", htmlAttributes: new { @class = "control-label col-md-4" })
-        <div class="col-md-8">
-            <strong>q = </strong>@Html.Label(Model.q().ToString())
-        </div>
+        <strong>
+            q = >@Html.Label(Model.q().ToString(), htmlAttributes: new { @class = "control-label" })
+        </strong>
     </div>
 </div>
