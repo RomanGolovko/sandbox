@@ -1,0 +1,28 @@
+﻿@model IEnumerable<SEO_Analyzer.Models.WordViewModel>
+@using GridMvc.Html
+
+@{
+    ViewBag.Title = "Details";
+    //Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+        <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+        <script src="@Url.Content("~/Scripts/jquery-1.9.1.min.js")"></script>
+    </head>
+
+    <body>
+        <h2>@ViewBag.ResultName</h2>
+
+        @Html.Grid(Model).AutoGenerateColumns().Sortable()
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </body>
+</html>

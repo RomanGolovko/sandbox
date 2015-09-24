@@ -1,0 +1,43 @@
+﻿@model SEO_Analyzer.Models.ResultViewModel
+
+
+<div class="form-horizontal">
+    <h4>Result</h4>
+
+    <hr />
+
+    <div class="form-group">
+        @Html.DisplayNameFor(model => model.Link_Text)
+        <div class="col-md-10">
+            @Html.DisplayFor(model => model.Link_Text)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <table id="list" class="table table-striped">
+            <tr>
+                <th>
+                    @Html.Label("Words")
+                </th>
+                <th>
+                    @Html.Label("Count")
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.Words)
+            {
+                <tr>
+                    <td>
+                        @Html.HiddenFor(modelItem => item.Literal)
+                        @Html.DisplayFor(modelItem => item.Literal)
+                    </td>
+                    <td>
+                        @Html.HiddenFor(modelItem => item.Count)
+                        @Html.DisplayFor(modelItem => item.Count)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
