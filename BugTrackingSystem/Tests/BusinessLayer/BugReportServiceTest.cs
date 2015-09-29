@@ -108,69 +108,68 @@ namespace Tests.BusinessLayer
             Assert.IsNotNull(result);
         }
 
+        //[TestMethod]
+        //public void Can_Catch_Validation_Exception_With_Wrong_Id_In_GetCurrentReport()
+        //{
+        //    // Arrange
+        //    // - create variables / создаем переменные
+        //    int wrongId = 8;
+        //    string message = "";
+
+        //    // Arrange
+        //    // - create the mock repository / создаем макет репозитория
+        //    var mock = new Mock<IBugReportRepository>();
+
+        //    // Arrange
+        //    // - create an instance of the Bug Report Service / создаем экземпляр Bug Report Service
+        //    BugReportService service = new BugReportService(mock.Object);
+
+        //    // Act
+        //    try
+        //    {
+        //        var wrongIdResult = service.GetCurrentReport(wrongId);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        message = ex.Message;
+        //    }
+
+        //    // Assert
+        //    Assert.AreEqual("Bug report not found", message);
+        //}
+
+        //[TestMethod]
+        //public void Can_Catch_Validation_Exception_With_Null_Id_In_GetCurrentReport()
+        //{
+        //    // Arrange
+        //    // - create variable / создаем переменную
+        //    string message = "";
+
+        //    // Arrange
+        //    // - create the mock repository / создаем макет репозитория
+        //    var mock = new Mock<IBugReportRepository>();
+        //    //mock.Setup(r => r.GetCurrentReport(report.Id)).Returns(new BugReport());
+
+        //    // Arrange
+        //    // - create an instance of the Bug Report Service / создаем экземпляр Bug Report Service
+        //    BugReportService service = new BugReportService(mock.Object);
+
+        //    // Act
+        //    try
+        //    {
+        //        var wrongIdResult = service.GetCurrentReport(null);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        message = ex.Message;
+        //    }
+
+        //    // Assert
+        //    Assert.AreEqual("Bug report id not set", message);
+        //}
+
         [TestMethod]
-        public void Can_Catch_Validation_Exception_With_Wrong_Id_In_GetCurrentReport()
-        {
-            // Arrange
-            // - create variables / создаем переменные
-            int wrongId = 8;
-            string message = "";
-
-            // Arrange
-            // - create the mock repository / создаем макет репозитория
-            var mock = new Mock<IBugReportRepository>();
-            //mock.Setup(r => r.GetCurrentReport(report.Id)).Returns(new BugReport());
-
-            // Arrange
-            // - create an instance of the Bug Report Service / создаем экземпляр Bug Report Service
-            BugReportService service = new BugReportService(mock.Object);
-
-            // Act
-            try
-            {
-                var wrongIdResult = service.GetCurrentReport(wrongId);
-            }
-            catch (Exception ex)
-            {
-                message = ex.Message;
-            }
-
-            // Assert
-            Assert.AreEqual("Bug report not found", message);
-        }
-
-        [TestMethod]
-        public void Can_Catch_Validation_Exception_With_Null_Id_In_GetCurrentReport()
-        {
-            // Arrange
-            // - create variable / создаем переменную
-            string message = "";
-
-            // Arrange
-            // - create the mock repository / создаем макет репозитория
-            var mock = new Mock<IBugReportRepository>();
-            //mock.Setup(r => r.GetCurrentReport(report.Id)).Returns(new BugReport());
-
-            // Arrange
-            // - create an instance of the Bug Report Service / создаем экземпляр Bug Report Service
-            BugReportService service = new BugReportService(mock.Object);
-
-            // Act
-            try
-            {
-                var wrongIdResult = service.GetCurrentReport(null);
-            }
-            catch (Exception ex)
-            {
-                message = ex.Message;
-            }
-
-            // Assert
-            Assert.AreEqual("Bug report id not set", message);
-        }
-
-        [TestMethod]
-        public void Can_Insert_Bug_Report()
+        public void Can_Add_Bug_Report()
         {
             // Arrange
             // - create an instance of the Bug Report / создаем экземпляр Bug Report

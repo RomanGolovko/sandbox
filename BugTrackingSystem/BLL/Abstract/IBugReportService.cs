@@ -27,16 +27,10 @@ namespace BusinessLayer.Abstract
         BugReportDTO GetCurrentReport(int? id);
 
         /// <summary>
-        /// Save report to database / Сохраняет bug report в базу данных
+        /// Add or edit report / Добавляет или редактирует bug report
         /// </summary>
         /// <param name="bugReport">Bug report</param>
-        void InsertReport(BugReportDTO bugReport);
-
-        /// <summary>
-        /// Edit bug report / Редактирует bug report
-        /// </summary>
-        /// <param name="bugReport">Bug report</param>
-        void EditReport(BugReportDTO bugReport);
+        void Upsert(BugReportDTO bugReport);
 
         /// <summary>
         /// Delete bug report from database / Удаляет bug report из базы данных

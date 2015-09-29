@@ -60,19 +60,19 @@ namespace BusinessLayer.Concrete
 
         public BugReportDTO GetCurrentReport(int? id)
         {
-            // validation / валидация
-            if (id == null)
-            {
-                throw new ValidationException("Bug report id not set", "");
-            }
+            //// validation / валидация
+            //if (id == null)
+            //{
+            //    throw new ValidationException("Bug report id not set", "");
+            //}
 
             var report = repository.GetCurrentReport(id.Value);
 
-            // validation / валидация
-            if (report == null)
-            {
-                throw new ValidationException("Bug report not found", "");
-            }
+            //// validation / валидация
+            //if (report == null)
+            //{
+            //    throw new ValidationException("Bug report not found", "");
+            //}
 
             // using automapper for the projection of one collection to another /
             // применяем автомаппер для проекции одной коллекции на другую
@@ -80,38 +80,40 @@ namespace BusinessLayer.Concrete
             return Mapper.Map<BugReport, BugReportDTO>(report);
         }
 
-        public void InsertReport(BugReportDTO bugReport)
-        {            
-            // using automapper for the projection of one collection to another /
-            // применяем автомаппер для проекции одной коллекции на другую
-            Mapper.CreateMap<BugReportDTO, BugReport>();
-            var report = Mapper.Map<BugReportDTO, BugReport>(bugReport);
-            repository.CreateReport(report);
-        }
-
-        public void EditReport(BugReportDTO bugReport)
+        public void Upsert(BugReportDTO bugReport)
         {
-            BugReport report = new BugReport
+            if (bugReport.Id == null)
             {
-                Id = bugReport.Id,
-                Summary = bugReport.Summary,
-                Project = bugReport.Project,
-                Component = bugReport.Component,
-                Version = bugReport.Version,
-                Severity = bugReport.Severity,
-                Priority = bugReport.Priority,
-                Status = bugReport.Status,
-                Author = bugReport.Author,
-                AssignedTo = bugReport.AssignedTo,
-                FoundIn = bugReport.FoundIn,
-                Environment = bugReport.Environment,
-                ReproduceSteps = bugReport.ReproduceSteps,
-                ActualResult = bugReport.ActualResult,
-                ExpectedResult = bugReport.ExpectedResult,
-                Attachment = bugReport.Attachment
-            };
+                // using automapper for the projection of one collection to another /
+                // применяем автомаппер для проекции одной коллекции на другую
+                Mapper.CreateMap<BugReportDTO, BugReport>();
+                var report = Mapper.Map<BugReportDTO, BugReport>(bugReport);
+                repository.CreateReport(report);
+            }
+            else
+            {
+                BugReport report = new BugReport
+                {
+                    Id = bugReport.Id.Value,
+                    Summary = bugReport.Summary,
+                    Project = bugReport.Project,
+                    Component = bugReport.Component,
+                    Version = bugReport.Version,
+                    Severity = bugReport.Severity,
+                    Priority = bugReport.Priority,
+                    Status = bugReport.Status,
+                    Author = bugReport.Author,
+                    AssignedTo = bugReport.AssignedTo,
+                    FoundIn = bugReport.FoundIn,
+                    Environment = bugReport.Environment,
+                    ReproduceSteps = bugReport.ReproduceSteps,
+                    ActualResult = bugReport.ActualResult,
+                    ExpectedResult = bugReport.ExpectedResult,
+                    Attachment = bugReport.Attachment
+                };
 
-            repository.UpdateReport(report);
+                repository.UpdateReport(report);
+            }
         }
 
         public BugReportDTO RemoveReport(int? id)

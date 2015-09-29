@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
+using Cross_Cutting.Security;
 using DataLayer.Abstract;
 using DataLayer.Entities;
 
@@ -42,7 +42,7 @@ namespace DataLayer.Concrete
             }
             else
             {
-                throw new ApplicationException("Can't delete report with id: " + id);
+                throw new ValidationException("Can't delete report with id: " + id, "");
             }
 
             return report;
