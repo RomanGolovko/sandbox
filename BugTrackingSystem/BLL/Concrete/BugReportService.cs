@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
 using BusinessLayer.Abstract;
@@ -60,13 +61,19 @@ namespace BusinessLayer.Concrete
 
         public BugReportDTO GetCurrentReport(int? id)
         {
-            //// validation / валидация
-            //if (id == null)
-            //{
-            //    throw new ValidationException("Bug report id not set", "");
-            //}
+            BugReport report;
 
-            var report = repository.GetCurrentReport(id.Value);
+            // validation / валидация
+            if (id == null)
+            {
+                //throw new ValidationException("Bug report id not set", "");
+                report = new BugReport();
+            }
+            else
+            {
+                report = repository.GetCurrentReport(id.Value);
+            }
+
 
             //// validation / валидация
             //if (report == null)
@@ -82,12 +89,13 @@ namespace BusinessLayer.Concrete
 
         public void Upsert(BugReportDTO bugReport)
         {
-            if (bugReport.Id == null)
+            if (bugReport.Id == 0)
             {
                 // using automapper for the projection of one collection to another /
                 // применяем автомаппер для проекции одной коллекции на другую
                 Mapper.CreateMap<BugReportDTO, BugReport>();
                 var report = Mapper.Map<BugReportDTO, BugReport>(bugReport);
+                report.FoundIn = DateTime.Now;
                 repository.CreateReport(report);
             }
             else
@@ -104,7 +112,7 @@ namespace BusinessLayer.Concrete
                     Status = bugReport.Status,
                     Author = bugReport.Author,
                     AssignedTo = bugReport.AssignedTo,
-                    FoundIn = bugReport.FoundIn,
+                    FoundIn = DateTime.Now,
                     Environment = bugReport.Environment,
                     ReproduceSteps = bugReport.ReproduceSteps,
                     ActualResult = bugReport.ActualResult,

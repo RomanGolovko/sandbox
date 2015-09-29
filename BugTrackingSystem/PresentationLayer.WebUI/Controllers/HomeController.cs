@@ -76,30 +76,39 @@ namespace PresentationLayer.WebUI.Controllers
         // GET: Home/Create
         public ActionResult Create()
         {
-            return View("Edit", new BugReportViewModel());
+            return RedirectToAction("Edit", new BugReportViewModel());
         }
 
         // GET: Home/Edit/5
         public ActionResult Edit(int? id)
         {
-            BugReportViewModel reportViewModel = new BugReportViewModel();
+            List<string> severity = new List<string> { "Blocer", "Critical", "Major", "Minor", "Trivial" };
+            ViewBag.Severity = new SelectList(severity);
+
+            List<string> priority = new List<string> { "High", "Medium", "Low" };
+            ViewBag.Priority = new SelectList(priority);
+
+            List<string> status = new List<string> { "Opened", "Resolved", "Closed", "Reopened", "In Progress" };
+            ViewBag.Status = new SelectList(status);
+
             try
             {
                 // using automapper for the projection of one collection to another /
                 // применяем автомаппер для проекции одной коллекции на другую
                 Mapper.CreateMap<BugReportDTO, BugReportViewModel>();
-                reportViewModel = Mapper.Map<BugReportDTO, BugReportViewModel>(service.GetCurrentReport(id));
+                var reportViewModel = Mapper.Map<BugReportDTO, BugReportViewModel>(service.GetCurrentReport(id));
+
+                return View(reportViewModel);
             }
             catch (ValidationException ex)
             {
                 ModelState.AddModelError(ex.Property, ex.Message);
-                TempData["message"] = ex.Message;
+                return View();
             }
-
-            return View(reportViewModel);
         }
 
         // POST: Home/Edit/5
+        [HttpPost]
         public ActionResult Edit(BugReportViewModel reportViewModel)
         {
             try
